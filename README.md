@@ -75,7 +75,7 @@ example: `assets/translations/ar.json`
 Run this command to generate the translations keys:
 
 ```bash
-$ translations_code_gen keys assets/translations/en.json lib/translations/keys.dart
+$ flutter pub run translations_code_gen keys assets/translations/en.json lib/translations/keys.dart
 ```
 
 The 1st argument is the command name, the 2nd argument is the path to the translations file, the 3rd argument is the path to the output file.
@@ -101,7 +101,7 @@ class HOME {
 Run this command to generate the translations values:
 
 ```bash
-$ translations_code_gen values assets/translations/en.json lib/translations/values/en.dart
+$ flutter pub run translations_code_gen values assets/translations/en.json lib/translations/values/en.dart
 ```
 
 The 1st argument is the command name, the 2nd argument is the path to the translations folder, the 3rd argument is the path to the output file.
