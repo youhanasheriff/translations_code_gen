@@ -101,7 +101,7 @@ class HOME {
 Run this command to generate the translations values:
 
 ```bash
-$ flutter pub run translations_code_gen values assets/translations/en.json lib/translations/values/en.dart
+$ flutter pub run translations_code_gen values assets/translations/ lib/translations/values/
 ```
 
 The 1st argument is the command name, the 2nd argument is the path to the translations folder, the 3rd argument is the path to the output file.
