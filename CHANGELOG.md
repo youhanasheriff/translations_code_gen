@@ -25,3 +25,7 @@
 ## 1.0.6
 
 - Fixed double quotes and new line error when generating values.
+
+## 1.0.7
+
+- Renamed lib/code_gen.dart to lib/translations_code_gen.dart.
