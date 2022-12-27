@@ -1,0 +1,20 @@
+name: translations_code_gen
+description: An application to generate translations keys and values for a dart/flutter application from .json file.
+homepage: https://youhanasheriff.com
+license: BSD 3-Clause License
+repository: https://github.com/youhanasheriff/translations_code_gen
+issue_tracker: https://github.com/youhanasheriff/translations_code_gen/issues
+documentation: https://github.com/youhanasheriff/translations_code_gen
+version: 1.0.1
+
+environment:
+  sdk: '>=2.18.2 <3.0.0'
+
+# dependencies:
+#   path: ^1.8.0
+
+dev_dependencies:
+  lints: ^2.0.0
+
+executables:
+  translations_code_gen: 'translations_code_gen'
