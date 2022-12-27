@@ -13,3 +13,7 @@
 ## 1.0.3
 
 - Added values to generate from the directory.
+
+## 1.0.4
+
+- Added info print statements.

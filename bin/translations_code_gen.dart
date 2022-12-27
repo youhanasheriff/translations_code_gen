@@ -39,9 +39,13 @@ void main(List<String> arguments) async {
       await outputDir.create(recursive: true);
     }
 
+    stderr.write('Generating $outputFileName...');
+
     // Write the Dart code to a file
     final outputFile = File(outputFileName);
     await outputFile.writeAsString(dartCode);
+
+    stderr.writeln('done!!');
   } else if (type == 'values') {
     final inputFileDir = arguments[1][arguments[1].length - 1] == '/'
         ? arguments[1].substring(0, arguments[1].length - 1)
@@ -83,10 +87,14 @@ void main(List<String> arguments) async {
         if (!await outputDir.exists()) {
           await outputDir.create(recursive: true);
         }
-        print('${outputDir.path}/$lang.dart');
+
+        stderr.write('Generating ${outputDir.path}/$lang.dart...');
+
         // Write the Dart code to a file
         final outputFile = File('$outputFileDir/$lang.dart');
         await outputFile.writeAsString(dartCode);
+
+        stderr.writeln('done!!');
       }
     } else {
       throw Exception('Directory does not exist:  $inputFileDir');
