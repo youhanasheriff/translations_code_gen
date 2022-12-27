@@ -17,3 +17,7 @@
 ## 1.0.4
 
 - Added info print statements.
+
+## 1.0.5
+
+- Modified the `README.md` file.
