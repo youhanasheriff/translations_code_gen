@@ -21,3 +21,7 @@
 ## 1.0.5
 
 - Modified the `README.md` file.
+
+## 1.0.6
+
+- Fixed double quotes and new line error when generating values.

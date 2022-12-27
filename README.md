@@ -27,13 +27,13 @@ This is a simple tool to generate the translations code for the Dart/Flutter pro
 
 ```yaml
 dependencies:
-  translations_code_gen: ^1.0.0
+  translations_code_gen: ^1.0.6
 ```
 
 ### 2. Run this commend
 
 ```bash
-$ flutter pub get
+flutter pub get
 ```
 
 ## Usage
@@ -75,7 +75,7 @@ example: `assets/translations/ar.json`
 Run this command to generate the translations keys:
 
 ```bash
-$ flutter pub run translations_code_gen keys assets/translations/en.json lib/translations/keys.dart
+flutter pub run translations_code_gen keys assets/translations/en.json lib/translations/keys.dart
 ```
 
 The 1st argument is the command name, the 2nd argument is the path to the translations file, the 3rd argument is the path to the output file.
@@ -101,7 +101,7 @@ class HOME {
 Run this command to generate the translations values:
 
 ```bash
-$ flutter pub run translations_code_gen values assets/translations/ lib/translations/values/
+flutter pub run translations_code_gen values assets/translations/ lib/translations/values/
 ```
 
 The 1st argument is the command name, the 2nd argument is the path to the translations folder, the 3rd argument is the path to the output file.

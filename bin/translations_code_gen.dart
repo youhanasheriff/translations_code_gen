@@ -1,4 +1,4 @@
-import 'package:translations_code_gen/translations_code_gen.dart' as code_gen;
+import 'package:translations_code_gen/code_gen.dart' as code_gen;
 import 'dart:convert';
 import 'dart:io';
 
@@ -15,17 +15,13 @@ void main(List<String> arguments) async {
     final inputFileName = arguments[1];
     final outputFileName = arguments[2];
 
-    final lang = outputFileName.contains('/')
-        ? outputFileName.split('/').last.split('.').first
-        : outputFileName.split('.').first;
-
     // Read the JSON file
     final file = File(inputFileName);
     final jsonString = await file.readAsString();
     final Map<String, dynamic> data = jsonDecode(jsonString);
 
     // Generate the Dart code
-    final dartCode = code_gen.generateDartCode(data, type, lang);
+    final dartCode = code_gen.generateDartCodeKeys(data);
 
     // Create the output directory if it does not exist
     final outputDir = Directory(outputFileName.contains('/')
@@ -39,7 +35,7 @@ void main(List<String> arguments) async {
       await outputDir.create(recursive: true);
     }
 
-    stderr.write('Generating $outputFileName...');
+    stderr.writeln('Generating $outputFileName...');
 
     // Write the Dart code to a file
     final outputFile = File(outputFileName);
@@ -75,7 +71,7 @@ void main(List<String> arguments) async {
             : entity.path.split('.').first;
 
         // Generate the Dart code
-        final dartCode = code_gen.generateDartCode(data, type, lang);
+        final dartCode = code_gen.generateDartCodeValues(data, lang);
 
         final outputDir = Directory(outputFileDir.contains('/')
             ? outputFileDir
@@ -88,7 +84,7 @@ void main(List<String> arguments) async {
           await outputDir.create(recursive: true);
         }
 
-        stderr.write('Generating ${outputDir.path}/$lang.dart...');
+        stderr.writeln('Generating ${outputDir.path}/$lang.dart...');
 
         // Write the Dart code to a file
         final outputFile = File('$outputFileDir/$lang.dart');

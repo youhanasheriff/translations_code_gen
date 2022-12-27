@@ -1,13 +1,3 @@
-String generateDartCode(Map<String, dynamic> data, String type, String lang) {
-  if (type == 'keys') {
-    return generateDartCodeKeys(data);
-  } else if (type == 'values') {
-    return generateDartCodeValues(data, lang);
-  } else {
-    throw Exception('Unknown type: $type');
-  }
-}
-
 String generateDartCodeKeys(Map<String, dynamic> data) {
   final buffer = StringBuffer();
   buffer.writeln('// GENERATED CODE - DO NOT MODIFY BY HAND');
@@ -50,7 +40,7 @@ String generateDartCodeValues(Map<String, dynamic> data, String lang) {
 
     for (var field in (entry.value as Map<String, dynamic>).entries) {
       buffer.writeln(
-        '  ${entry.key}.${field.key}: "${field.value}",',
+        '  ${entry.key}.${field.key}: "${field.value.replaceAll('"', '\\"').replaceAll('\n', '\\n')}",',
       );
     }
     buffer.writeln('};');
