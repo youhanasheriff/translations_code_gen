@@ -1,4 +1,4 @@
-import 'package:translations_code_gen/code_gen.dart' as code_gen;
+import 'package:translations_code_gen/translations_code_gen.dart' as code_gen;
 import 'dart:convert';
 import 'dart:io';
 
