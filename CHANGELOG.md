@@ -9,3 +9,7 @@
 ## 1.0.2
 
 - Updated the `README.md` file.
+
+## 1.0.3
+
+- Added values to generate from the directory.
