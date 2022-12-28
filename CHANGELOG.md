@@ -1,3 +1,7 @@
+## 0.1.1
+
+- For Dart SDK v2
+
 ## 1.0.0
 
 - Initial version.
