@@ -1,19 +1,88 @@
+import 'package:settings_yaml/settings_yaml.dart';
 import 'package:translations_code_gen/translations_code_gen.dart' as code_gen;
+
 import 'dart:convert';
 import 'dart:io';
 
+final configNotSpecifiedError = '''
+
+------------------------------------------------------------------------------------------------------------
+  -> You must specify the input and output files for the keys and values generation.
+  -> Specify in the pubspec.yaml file or create a translations_code_gen.yaml file to specify it.
+  -> Example:
+    translations_code_gen:
+      keys:
+        input: 'assets/translations/en.json'
+        output: 'lib/translations/keys.dart'
+      values:
+        input: 'assets/translations/'
+        output: 'lib/translations/values/'
+
+  -> Please check your pubspec.yaml or translations_code_gen.yaml file.
+------------------------------------------------------------------------------------------------------------
+''';
+
 void main(List<String> arguments) async {
-  if (arguments.length != 3) {
-    stderr.writeln(
-        'Usage: codegen [type (keys or values)] input.json output.dart');
+  String pathToConfiguration = 'translations_code_gen.yaml';
+
+  stderr.writeln({
+    'pathToConfiguration': pathToConfiguration,
+  });
+
+  if (!File('translations_code_gen.yaml').existsSync()) {
+    stderr.writeln('''
+
+------------------------------------------------------------------------------------------------------------
+  -> Configuration file not found at translations_code_gen.yaml
+  -> Using pubspec.yaml
+------------------------------------------------------------------------------------------------------------
+ ''');
+    pathToConfiguration = 'pubspec.yaml';
+  }
+
+  if (arguments.isNotEmpty) {
+    stderr.writeln('''
+
+------------------------------------------------------------------------------------------------------------
+  -> Passing arguments is not supported from translations_code_gen: 1.1.0.
+
+  -> You must specify the input and output files for the keys and values generation.
+  -> Specify in the pubspec.yaml file or create a translations_code_gen.yaml file to specify it.
+------------------------------------------------------------------------------------------------------------
+''');
     exit(1);
   }
 
-  final type = arguments[0];
+  SettingsYaml coonfiguration =
+      SettingsYaml.load(pathToSettings: pathToConfiguration);
 
-  if (type == 'keys') {
-    final inputFileName = arguments[1];
-    final outputFileName = arguments[2];
+  final configExist = coonfiguration.selectorExists('translations_code_gen');
+
+  if (!configExist) {
+    stderr.writeln(configNotSpecifiedError);
+    exit(1);
+  }
+
+  String? keysInput =
+      coonfiguration.selectAsMap('translations_code_gen')?['keys']?['input'];
+  String? keysOutput =
+      coonfiguration.selectAsMap('translations_code_gen')?['keys']?['output'];
+  String? valuesInput =
+      coonfiguration.selectAsMap('translations_code_gen')?['values']?['input'];
+  String? valuesOutput =
+      coonfiguration.selectAsMap('translations_code_gen')?['values']?['output'];
+
+  if (keysInput == null ||
+      keysOutput == null ||
+      valuesInput == null ||
+      valuesOutput == null) {
+    stderr.writeln(configNotSpecifiedError);
+    exit(1);
+  }
+
+  {
+    final inputFileName = keysInput;
+    final outputFileName = keysOutput;
 
     // Read the JSON file
     final file = File(inputFileName);
@@ -39,16 +108,19 @@ void main(List<String> arguments) async {
 
     // Write the Dart code to a file
     final outputFile = File(outputFileName);
+    await outputFile.create(recursive: true);
     await outputFile.writeAsString(dartCode);
 
     stderr.writeln('done!!');
-  } else if (type == 'values') {
-    final inputFileDir = arguments[1][arguments[1].length - 1] == '/'
-        ? arguments[1].substring(0, arguments[1].length - 1)
-        : '${arguments[1]}/';
-    final outputFileDir = arguments[2][arguments[2].length - 1] == '/'
-        ? arguments[2].substring(0, arguments[2].length - 1)
-        : '${arguments[2]}/';
+  }
+
+  {
+    final inputFileDir = valuesInput[valuesInput.length - 1] == '/'
+        ? valuesInput.substring(0, valuesInput.length - 1)
+        : '$valuesInput/';
+    final outputFileDir = valuesOutput[valuesOutput.length - 1] == '/'
+        ? valuesOutput.substring(0, valuesOutput.length - 1)
+        : '$valuesOutput/';
 
     // Get a Directory object for the specified path
     Directory dir = Directory(inputFileDir);
@@ -88,14 +160,11 @@ void main(List<String> arguments) async {
 
         // Write the Dart code to a file
         final outputFile = File('$outputFileDir/$lang.dart');
+        await outputFile.create(recursive: true);
         await outputFile.writeAsString(dartCode);
 
         stderr.writeln('done!!');
       }
-    } else {
-      throw Exception('Directory does not exist:  $inputFileDir');
     }
-  } else {
-    throw Exception('Unknown type: $type');
   }
 }
