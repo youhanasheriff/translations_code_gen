@@ -29,3 +29,8 @@
 ## 1.0.7
 
 - Renamed lib/code_gen.dart to lib/translations_code_gen.dart.
+
+## 1.1.0
+
+- Added support for generating translations from a directory and file with configuration.
+- Added support for translations_code_gen.yaml file.
