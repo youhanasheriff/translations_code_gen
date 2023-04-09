@@ -25,10 +25,6 @@ final configNotSpecifiedError = '''
 void main(List<String> arguments) async {
   String pathToConfiguration = 'translations_code_gen.yaml';
 
-  stderr.writeln({
-    'pathToConfiguration': pathToConfiguration,
-  });
-
   if (!File('translations_code_gen.yaml').existsSync()) {
     stderr.writeln('''
 
