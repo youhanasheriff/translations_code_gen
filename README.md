@@ -27,7 +27,7 @@ This is a simple tool to generate the translations code for the Dart/Flutter pro
 
 ```yaml
 dependencies:
-  translations_code_gen: ^1.1.0
+  translations_code_gen: ^1.2.0
 ```
 
 ### 2. Run this commend
@@ -87,6 +87,8 @@ Run this command to generate the translations `keys` and `values` to the `output
 ```bash
 flutter pub run translations_code_gen
 ```
+
+The `-g` or `--generate` flag is optional, if you don't use it, the tool will normally generate dart keys and values code for you.
 
 This will generate the following keys to the `lib/translations/keys.dart` file:
 
@@ -175,5 +177,40 @@ class MyHomePage extends StatelessWidget {
       ),
     );
   }
+}
+```
+
+### 5. Same as above but with the `--generate` flag
+
+```bash
+flutter pub run translations_code_gen --generate=json-values
+```
+
+There are 4 types of code generation mode:
+
+- `dart` (default): generate dart keys and values code
+- `dart-keys`: generate dart keys only.
+- `dart-values`: generate dart values only.
+- `json-values`: generate json values only.
+
+## Output with the `--generate=json-values` flag
+
+example: `lib/translations/values/en.json`
+
+```json
+{
+  "GENERAL.HELLO": "Hello",
+  "GENERAL.WELCOME": "Welcome",
+  "HOME.TITLE": "Home"
+}
+```
+
+example: `lib/translations/values/ar.json`
+
+```json
+{
+  "GENERAL.HELLO": "مرحبا",
+  "GENERAL.WELCOME": "أهلا بك",
+  "HOME.TITLE": "الرئيسية"
 }
 ```

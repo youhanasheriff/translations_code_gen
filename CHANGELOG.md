@@ -1,3 +1,10 @@
+## 1.2.0
+
+- Added support for generating modes with the '-g' or '--generate' flag.
+- Added 4 generation modes: 'dart', 'dart-keys, 'dart-values', 'json-values'.
+- Added few more error checks.
+- Added more error messages.
+
 ## 1.1.1
 
 - Removed extra print code.
