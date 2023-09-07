@@ -27,7 +27,7 @@ This is a simple tool to generate the translations code for the Dart/Flutter pro
 
 ```yaml
 dependencies:
-  translations_code_gen: ^1.2.0
+  translations_code_gen: ^1.2.1
 ```
 
 ### 2. Run this commend
