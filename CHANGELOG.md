@@ -1,4 +1,4 @@
-## 1.2.0
+## 1.2.1
 
 - Updated Dart SDK to `Dart SDK version: 3.1.0 (stable)`.
 - Updated `settings_yaml` from `^5.0.0` to `^7.0.0`.
