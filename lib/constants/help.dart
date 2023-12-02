@@ -1,3 +1,4 @@
+/// Help prints for the command line.
 class HelpPrints {
   static final commandsHelp = '''
 ------------------------------------------------------------------------------------------------------------
