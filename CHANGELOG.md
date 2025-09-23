@@ -1,3 +1,16 @@
+## 1.3.5
+
+- **Documentation Enhancement**: Comprehensive README.md improvements with detailed placeholder examples:
+  - **Named Placeholders**: Added examples for `{name}`, `{username}`, `{timeOfDay}` placeholders
+  - **Positional Placeholders**: Included examples for positional `{}` placeholders
+  - **Mixed Scenarios**: Demonstrated complex scenarios combining named and positional placeholders
+  - **Multilingual Examples**: Enhanced JSON examples in both English and Arabic
+  - **Generated Code Examples**: Added comprehensive examples of generated Dart code for all placeholder types
+  - **Usage Examples**: Included practical Flutter widget usage examples
+  - **Feature Documentation**: Added detailed section explaining all placeholder types and their usage patterns
+- **Code Examples**: Updated all code examples to reflect real-world usage scenarios
+- **Developer Experience**: Improved documentation clarity for better understanding of package capabilities
+
 ## 1.3.3
 
 - **Documentation**: Added comprehensive API documentation generated with dart doc

@@ -27,7 +27,7 @@ This is a simple tool to generate the translations code for the Dart/Flutter pro
 
 ```yaml
 dependencies:
-  translations_code_gen: ^1.3.2
+  translations_code_gen: ^1.3.4
 ```
 
 ### 2. Run this commend
@@ -48,10 +48,18 @@ example: `assets/translations/en.json`
 {
   "GENERAL": {
     "HELLO": "Hello",
-    "WELCOME": "Welcome"
+    "WELCOME": "Welcome",
+    "WELCOME_USER": "Welcome {name}!",
+    "GREETING_WITH_TIME": "Good {timeOfDay}, {name}!"
   },
   "HOME": {
     "TITLE": "Home"
+  },
+  "MESSAGES": {
+    "SIMPLE_MESSAGE": "This is a simple message",
+    "USER_PROFILE": "User {username} has {count} notifications",
+    "POSITIONAL_EXAMPLE": "First: {}, Second: {}, Third: {}",
+    "MIXED_PLACEHOLDERS": "Hello {name}, you have {} new messages and {} pending tasks"
   }
 }
 ```
@@ -62,10 +70,18 @@ example: `assets/translations/ar.json`
 {
   "GENERAL": {
     "HELLO": "مرحبا",
-    "WELCOME": "أهلا بك"
+    "WELCOME": "أهلا بك",
+    "WELCOME_USER": "أهلا بك {name}!",
+    "GREETING_WITH_TIME": "{timeOfDay} طيب، {name}!"
   },
   "HOME": {
     "TITLE": "الرئيسية"
+  },
+  "MESSAGES": {
+    "SIMPLE_MESSAGE": "هذه رسالة بسيطة",
+    "USER_PROFILE": "المستخدم {username} لديه {count} إشعارات",
+    "POSITIONAL_EXAMPLE": "الأول: {}، الثاني: {}، الثالث: {}",
+    "MIXED_PLACEHOLDERS": "مرحبا {name}، لديك {} رسائل جديدة و {} مهام معلقة"
   }
 }
 ```
@@ -96,13 +112,33 @@ This will generate the following keys to the `lib/translations/keys.dart` file:
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: constant_identifier_names, camel_case_types
 
+import 'package:easy_localization/easy_localization.dart';
+
 class GENERAL {
-  static const String HELLO = "GENERAL.HELLO";
-  static const String WELCOME = "GENERAL.WELCOME";
+  static const String _HELLO = "GENERAL.HELLO";
+  static String hello() => _HELLO.tr();
+  static const String _WELCOME = "GENERAL.WELCOME";
+  static String welcome() => _WELCOME.tr();
+  static const String _WELCOME_USER = "GENERAL.WELCOME_USER";
+  static String welcomeUser({String? name, }) => _WELCOME_USER.tr(namedArgs: {if (name != null) 'name': name, });
+  static const String _GREETING_WITH_TIME = "GENERAL.GREETING_WITH_TIME";
+  static String greetingWithTime({String? timeOfDay, String? name, }) => _GREETING_WITH_TIME.tr(namedArgs: {if (timeOfDay != null) 'timeOfDay': timeOfDay, if (name != null) 'name': name, });
 }
 
 class HOME {
-  static const String TITLE = "HOME.TITLE";
+  static const String _TITLE = "HOME.TITLE";
+  static String title() => _TITLE.tr();
+}
+
+class MESSAGES {
+  static const String _SIMPLE_MESSAGE = "MESSAGES.SIMPLE_MESSAGE";
+  static String simpleMessage() => _SIMPLE_MESSAGE.tr();
+  static const String _USER_PROFILE = "MESSAGES.USER_PROFILE";
+  static String userProfile({String? username, String? count, }) => _USER_PROFILE.tr(namedArgs: {if (username != null) 'username': username, if (count != null) 'count': count, });
+  static const String _POSITIONAL_EXAMPLE = "MESSAGES.POSITIONAL_EXAMPLE";
+  static String positionalExample({List<String?>? args, }) => _POSITIONAL_EXAMPLE.tr(args: args?.whereType<String>().toList(), );
+  static const String _MIXED_PLACEHOLDERS = "MESSAGES.MIXED_PLACEHOLDERS";
+  static String mixedPlaceholders({String? name, List<String?>? args, }) => _MIXED_PLACEHOLDERS.tr(args: args?.whereType<String>().toList(), namedArgs: {if (name != null) 'name': name, });
 }
 ```
 
@@ -117,17 +153,27 @@ example: `lib/translations/values/en.dart`
 import '../keys.dart'; // sometimes you need to change this path to match your project structure
 
 const Map<String, String> _general  = {
-  GENERAL.HELLO: "Hello",
-  GENERAL.WELCOME: "Welcome",
+  GENERAL._HELLO: "Hello",
+  GENERAL._WELCOME: "Welcome",
+  GENERAL._WELCOME_USER: "Welcome {name}!",
+  GENERAL._GREETING_WITH_TIME: "Good {timeOfDay}, {name}!",
 };
 
 const Map<String, String> _home  = {
-  HOME.TITLE: "Home",
+  HOME._TITLE: "Home",
+};
+
+const Map<String, String> _messages  = {
+  MESSAGES._SIMPLE_MESSAGE: "This is a simple message",
+  MESSAGES._USER_PROFILE: "User {username} has {count} notifications",
+  MESSAGES._POSITIONAL_EXAMPLE: "First: {}, Second: {}, Third: {}",
+  MESSAGES._MIXED_PLACEHOLDERS: "Hello {name}, you have {} new messages and {} pending tasks",
 };
 
 final Map<String, String> enValues = {
   ..._general,
   ..._home,
+  ..._messages,
 };
 ```
 
@@ -140,21 +186,133 @@ example: `lib/translations/values/ar.dart`
 import '../keys.dart'; // sometimes you need to change this path to match your project structure
 
 const Map<String, String> _general  = {
-  GENERAL.HELLO: "مرحبا",
-  GENERAL.WELCOME: "أهلا بك",
+  GENERAL._HELLO: "مرحبا",
+  GENERAL._WELCOME: "أهلا بك",
+  GENERAL._WELCOME_USER: "أهلا بك {name}!",
+  GENERAL._GREETING_WITH_TIME: "{timeOfDay} طيب، {name}!",
 };
 
 const Map<String, String> _home  = {
-  HOME.TITLE: "الرئيسية",
+  HOME._TITLE: "الرئيسية",
 };
 
-final Map<String, String> enValues = {
+const Map<String, String> _messages  = {
+  MESSAGES._SIMPLE_MESSAGE: "هذه رسالة بسيطة",
+  MESSAGES._USER_PROFILE: "المستخدم {username} لديه {count} إشعارات",
+  MESSAGES._POSITIONAL_EXAMPLE: "الأول: {}، الثاني: {}، الثالث: {}",
+  MESSAGES._MIXED_PLACEHOLDERS: "مرحبا {name}، لديك {} رسائل جديدة و {} مهام معلقة",
+};
+
+final Map<String, String> arValues = {
   ..._general,
   ..._home,
+  ..._messages,
 };
 ```
 
 You might have to change the keys import path to match your project structure.
+
+## Placeholder Types and Usage
+
+This package supports three types of placeholders in your translation strings:
+
+### 1. Named Placeholders `{name}`
+
+Named placeholders use curly braces with a parameter name inside. They generate methods with named parameters.
+
+**Translation JSON:**
+```json
+{
+  "WELCOME_USER": "Welcome {name}!",
+  "USER_STATS": "User {username} has {count} points"
+}
+```
+
+**Generated Dart Code:**
+```dart
+static String welcomeUser({String? name, }) => _WELCOME_USER.tr(namedArgs: {if (name != null) 'name': name, });
+static String userStats({String? username, String? count, }) => _USER_STATS.tr(namedArgs: {if (username != null) 'username': username, if (count != null) 'count': count, });
+```
+
+**Usage:**
+```dart
+Text(GENERAL.welcomeUser(name: 'John'))
+Text(GENERAL.userStats(username: 'Alice', count: '150'))
+```
+
+### 2. Positional Placeholders `{}`
+
+Positional placeholders use empty curly braces `{}`. They generate methods that accept a list of arguments.
+
+**Translation JSON:**
+```json
+{
+  "ORDERED_LIST": "First: {}, Second: {}, Third: {}"
+}
+```
+
+**Generated Dart Code:**
+```dart
+static String orderedList({List<String?>? args, }) => _ORDERED_LIST.tr(args: args?.whereType<String>().toList(), );
+```
+
+**Usage:**
+```dart
+Text(MESSAGES.orderedList(args: ['Apple', 'Banana', 'Cherry']))
+```
+
+### 3. Mixed Placeholders `{name}` + `{}`
+
+You can combine both named and positional placeholders in the same translation string.
+
+**Translation JSON:**
+```json
+{
+  "MIXED_MESSAGE": "Hello {name}, you have {} new messages and {} pending tasks"
+}
+```
+
+**Generated Dart Code:**
+```dart
+static String mixedMessage({String? name, List<String?>? args, }) => _MIXED_MESSAGE.tr(args: args?.whereType<String>().toList(), namedArgs: {if (name != null) 'name': name, });
+```
+
+**Usage:**
+```dart
+Text(MESSAGES.mixedMessage(
+  name: 'Alice',
+  args: ['5', '3']
+))
+```
+
+### 4. Simple Strings (No Placeholders)
+
+Strings without placeholders generate simple methods that call `.tr()` directly.
+
+**Translation JSON:**
+```json
+{
+  "SIMPLE_MESSAGE": "This is a simple message"
+}
+```
+
+**Generated Dart Code:**
+```dart
+static String simpleMessage() => _SIMPLE_MESSAGE.tr();
+```
+
+**Usage:**
+```dart
+Text(MESSAGES.simpleMessage())
+```
+
+### Key Features
+
+- **Type Safety**: All generated methods provide compile-time type checking
+- **Null Safety**: All parameters are nullable with proper null checks
+- **easy_localization Integration**: Generated code works seamlessly with the `easy_localization` package
+- **Automatic Formatting**: Translation keys are converted to camelCase method names
+- **Private Constants**: Internal constants are prefixed with `_` to keep the API clean
 
 ### 4. Use the generated code
 
@@ -170,10 +328,39 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(HOME.TITLE.tr()),
+        title: Text(HOME.title()),
       ),
-      body: Center(
-        child: Text(GENERAL.HELLO.tr()),
+      body: Column(
+        children: [
+          // Simple translation without placeholders
+          Text(GENERAL.hello()),
+          
+          // Named placeholder example
+          Text(GENERAL.welcomeUser(name: 'John')),
+          
+          // Multiple named placeholders
+          Text(GENERAL.greetingWithTime(
+            timeOfDay: 'morning', 
+            name: 'Sarah'
+          )),
+          
+          // Positional placeholders
+          Text(MESSAGES.positionalExample(
+            args: ['Apple', 'Banana', 'Cherry']
+          )),
+          
+          // Mixed placeholders (named + positional)
+          Text(MESSAGES.mixedPlaceholders(
+            name: 'Alice',
+            args: ['5', '3']
+          )),
+          
+          // User profile with named placeholders
+          Text(MESSAGES.userProfile(
+            username: 'developer',
+            count: '12'
+          )),
+        ],
       ),
     );
   }
@@ -201,7 +388,13 @@ example: `lib/translations/values/en.json`
 {
   "GENERAL.HELLO": "Hello",
   "GENERAL.WELCOME": "Welcome",
-  "HOME.TITLE": "Home"
+  "GENERAL.WELCOME_USER": "Welcome {name}!",
+  "GENERAL.GREETING_WITH_TIME": "Good {timeOfDay}, {name}!",
+  "HOME.TITLE": "Home",
+  "MESSAGES.SIMPLE_MESSAGE": "This is a simple message",
+  "MESSAGES.USER_PROFILE": "User {username} has {count} notifications",
+  "MESSAGES.POSITIONAL_EXAMPLE": "First: {}, Second: {}, Third: {}",
+  "MESSAGES.MIXED_PLACEHOLDERS": "Hello {name}, you have {} new messages and {} pending tasks"
 }
 ```
 
@@ -211,7 +404,13 @@ example: `lib/translations/values/ar.json`
 {
   "GENERAL.HELLO": "مرحبا",
   "GENERAL.WELCOME": "أهلا بك",
-  "HOME.TITLE": "الرئيسية"
+  "GENERAL.WELCOME_USER": "أهلا بك {name}!",
+  "GENERAL.GREETING_WITH_TIME": "{timeOfDay} طيب، {name}!",
+  "HOME.TITLE": "الرئيسية",
+  "MESSAGES.SIMPLE_MESSAGE": "هذه رسالة بسيطة",
+  "MESSAGES.USER_PROFILE": "المستخدم {username} لديه {count} إشعارات",
+  "MESSAGES.POSITIONAL_EXAMPLE": "الأول: {}، الثاني: {}، الثالث: {}",
+  "MESSAGES.MIXED_PLACEHOLDERS": "مرحبا {name}، لديك {} رسائل جديدة و {} مهام معلقة"
 }
 ```
 

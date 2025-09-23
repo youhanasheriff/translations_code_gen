@@ -7,7 +7,7 @@ import '../constants/constants.dart';
 /// efficient runtime lookup structures with proper type safety and organization.
 ///
 /// ## Key Features
-/// 
+///
 /// - **Runtime translation lookup**: Generates optimized maps for efficient value retrieval
 /// - **Multi-language support**: Creates language-specific value maps
 /// - **Nested structure support**: Handles hierarchical translation data
@@ -16,7 +16,7 @@ import '../constants/constants.dart';
 /// - **Flexible output modes**: Supports different code generation patterns
 ///
 /// ## Generated Code Structure
-/// 
+///
 /// The function generates Dart code with:
 /// - Private constant maps for each translation category
 /// - A main language-specific map that spreads all category maps
@@ -24,9 +24,9 @@ import '../constants/constants.dart';
 /// - Auto-generated file headers and linter ignore directives
 ///
 /// ## Generation Modes
-/// 
+///
 /// The function supports two generation modes via [generateMode]:
-/// 
+///
 /// ### Standard Mode ([SupportedGenerateModes.dart])
 /// Uses translation key constants for type-safe access:
 /// ```dart
@@ -35,7 +35,7 @@ import '../constants/constants.dart';
 ///   App.message: "You have pushed the button this many times:",
 /// };
 /// ```
-/// 
+///
 /// ### Values-Only Mode ([SupportedGenerateModes.dartValues])
 /// Uses string literals for direct key access:
 /// ```dart
@@ -46,11 +46,11 @@ import '../constants/constants.dart';
 /// ```
 ///
 /// ## Input Data Structure
-/// 
+///
 /// The input [data] should be a nested map structure where:
 /// - Top-level keys represent translation categories (e.g., 'App', 'User')
 /// - Second-level maps contain key-value pairs for translations
-/// 
+///
 /// Example input structure:
 /// ```dart
 /// {
@@ -66,7 +66,7 @@ import '../constants/constants.dart';
 /// ```
 ///
 /// ## Example Usage
-/// 
+///
 /// ```dart
 /// final Map<String, dynamic> translationData = {
 ///   'App': {
@@ -90,8 +90,8 @@ import '../constants/constants.dart';
 ///
 /// // Generate values-only mode (with string keys)
 /// final dartValuesCode = generateDartCodeValues(
-///   translationData, 
-///   'en', 
+///   translationData,
+///   'en',
 ///   generateMode: SupportedGenerateModes.dartValues
 /// );
 /// print(dartValuesCode);
@@ -107,15 +107,15 @@ import '../constants/constants.dart';
 /// ```
 ///
 /// ## String Escaping
-/// 
+///
 /// The function automatically handles string escaping for:
 /// - Double quotes: `"` becomes `\"`
 /// - Newlines: `\n` becomes `\\n`
-/// 
+///
 /// This ensures the generated Dart code is syntactically correct and safe.
 ///
 /// ## Generated File Structure
-/// 
+///
 /// The output includes:
 /// - Auto-generated file header warning
 /// - Linter ignore directives for constant naming
@@ -126,17 +126,17 @@ import '../constants/constants.dart';
 /// [data] A nested map containing translation data organized by categories.
 ///        Each top-level key represents a translation category, and each
 ///        value should be a Map<String, dynamic> containing the translations.
-/// 
+///
 /// [lang] The language identifier used to name the generated values map.
 ///        The final map will be named `{lang}Values` (e.g., 'en' -> 'enValues').
-/// 
+///
 /// [generateMode] The code generation mode that determines the output format.
 ///               Defaults to [SupportedGenerateModes.dart] for standard mode.
 ///               Use [SupportedGenerateModes.dartValues] for values-only mode.
-/// 
+///
 /// Returns a [String] containing the complete generated Dart code ready to be
 ///         written to a file or used in code generation pipelines.
-/// 
+///
 /// See also:
 /// * [SupportedGenerateModes] for available generation modes
 /// * Translation key generation functions for creating the corresponding key constants
