@@ -1,3 +1,14 @@
+## 1.2.2
+
+- **Major Dependency Upgrades**: Updated all dependencies to their latest stable versions.
+- **SDK Upgrade**: Updated Dart SDK from `3.1.0` to `3.9.2` (latest stable).
+- **Flutter SDK**: Added FVM support with Flutter `3.35.4` (includes Dart `3.9.2`).
+- **Dependencies Updated**:
+  - `settings_yaml`: `^7.0.0` → `^8.3.1` (major version upgrade)
+  - `lints`: `^2.0.0` → `^6.0.0` (major version upgrade)
+- **Development**: Added FVM configuration for better version management.
+- **Compatibility**: Verified compatibility with latest Dart SDK and all upgraded dependencies.
+
 ## 1.2.1
 
 - Updated Dart SDK to `Dart SDK version: 3.1.0 (stable)`.

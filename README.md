@@ -214,3 +214,77 @@ example: `lib/translations/values/ar.json`
   "HOME.TITLE": "الرئيسية"
 }
 ```
+
+## Development
+
+### Requirements
+
+- **Dart SDK**: `>=3.1.0 <4.0.0` (recommended: `3.9.2` or later)
+- **Flutter SDK**: `3.35.4` or later (when using FVM)
+
+### Setting up with FVM (Flutter Version Manager)
+
+This project uses [FVM](https://fvm.app/) for Flutter and Dart SDK version management to ensure consistent development environments.
+
+#### 1. Install FVM
+
+```bash
+# Using Homebrew (macOS)
+brew tap leoafarias/fvm
+brew install fvm
+
+# Using pub global
+dart pub global activate fvm
+
+# Using Chocolatey (Windows)
+choco install fvm
+```
+
+#### 2. Install and use the project's Flutter version
+
+```bash
+# Install the required Flutter version
+fvm install 3.35.4
+
+# Use it for this project
+fvm use 3.35.4
+```
+
+#### 3. Run commands with FVM
+
+```bash
+# Get dependencies
+fvm dart pub get
+
+# Run the application
+fvm dart run bin/translations_code_gen.dart
+
+# Analyze code
+fvm dart analyze
+
+# Run tests
+fvm dart test
+```
+
+### Without FVM
+
+If you prefer not to use FVM, ensure you have Dart SDK `3.9.2` or later installed:
+
+```bash
+# Check your Dart version
+dart --version
+
+# Run the application
+dart run bin/translations_code_gen.dart
+```
+
+### Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Install dependencies with `fvm dart pub get` (or `dart pub get`)
+4. Make your changes
+5. Run tests and ensure code analysis passes
+6. Commit your changes (`git commit -m 'Add some amazing feature'`)
+7. Push to the branch (`git push origin feature/amazing-feature`)
+8. Open a Pull Request

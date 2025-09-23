@@ -7,3 +7,6 @@ build/
 
 # MacOS
 .DS_Store
+
+# FVM Version Cache
+.fvm/
