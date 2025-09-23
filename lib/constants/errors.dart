@@ -15,7 +15,7 @@ class ConfigErrors {
         output: 'lib/translations/values/'
 
   -> Please check your pubspec.yaml or translations_code_gen.yaml file.
-  -> For more information vist: https://pub.dev/packages/translations_code_gen
+  -> For more information visit: https://pub.dev/packages/translations_code_gen
   -> or visit: https://github.com/youhanasheriff/translations_code_gen
 ------------------------------------------------------------------------------------------------------------
 ''';
@@ -34,7 +34,7 @@ class GenerateErrors {
   -> Invalid generate mode.
   -> Supported generate modes are: dart, dart-keys, dart-only, json-values
 
-  -> For more information vist: https://pub.dev/packages/translations_code_gen
+  -> For more information visit: https://pub.dev/packages/translations_code_gen
   -> or visit: https://github.com/youhanasheriff/translations_code_gen
 ------------------------------------------------------------------------------------------------------------
 ''';
@@ -60,7 +60,7 @@ class ArgumentsErrors {
 
   -> You must specify the input and output files for the keys and values generation.
   -> Specify in the pubspec.yaml file or create a translations_code_gen.yaml file to specify it.
-  -> For more information vist: https://pub.dev/packages/translations_code_gen
+  -> For more information visit: https://pub.dev/packages/translations_code_gen
   -> or visit: https://github.com/youhanasheriff/translations_code_gen
 ------------------------------------------------------------------------------------------------------------
 ''';
