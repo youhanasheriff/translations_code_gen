@@ -1,5 +1,12 @@
 ## 1.3.2
 
+- **Code Generation Improvements**: Major refactoring of generated translation code structure:
+  - **Private Constants**: Changed all translation constants to private const variables for better encapsulation
+  - **Public Methods**: Implemented public getter methods for all translation variables, including those without placeholders
+  - **Named Parameters**: Added named parameter methods for variables containing placeholders to improve code readability and type safety
+  - **Positional Parameters**: Included positional list parameters to handle unnamed arguments for placeholder variables, providing flexible parameter passing options
+- **API Enhancement**: These changes improve the generated code's maintainability, type safety, and developer experience
+- **Backward Compatibility**: Updated method signatures provide more intuitive and flexible ways to access translations
 - **Version Update**: Updated package version from 1.2.2 to 1.3.2.
 - **Documentation**: Updated README.md with latest version reference.
 - **Error Messages**: Updated error messages to reflect current version.
