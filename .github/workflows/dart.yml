@@ -39,6 +39,8 @@ jobs:
   publish:
     name: Publish to pub.dev
     needs: test
+    permissions:
+      id-token: write # Required for publishing to pub.dev
     uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
     # with:
     #   working-directory: path/to/package/within/repository
