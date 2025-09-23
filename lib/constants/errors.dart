@@ -43,9 +43,9 @@ class GenerateErrors {
 class ArgumentsErrors {
   static final moreThanOneArgumentError = '''
 ------------------------------------------------------------------------------------------------------------
-  -> Passing arguments other then -g (or) --generate is not supported from translations_code_gen: 1.1.2.
+  -> Passing arguments other then -g (or) --generate is not supported from translations_code_gen: 1.2.2.
 
-  -> Expample:
+  -> Example:
     translations_code_gen -g=json-values
     translations_code_gen --generate=json-values
 
