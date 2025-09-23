@@ -1,3 +1,9 @@
+## 1.3.3
+
+- **Documentation**: Added comprehensive API documentation generated with dart doc
+- **Code Quality**: Improved code structure and organization
+- **Maintenance**: Updated package metadata and consistency improvements
+
 ## 1.3.2
 
 - **Code Generation Improvements**: Major refactoring of generated translation code structure:
