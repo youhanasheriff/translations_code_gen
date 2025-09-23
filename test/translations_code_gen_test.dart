@@ -52,7 +52,7 @@ void main() {
       };
 
       // Generate JSON values
-      final result = generateJsonValues(testData, 'en');
+      final result = generateJsonValues(testData);
 
       // Verify the generated JSON is valid and contains expected data
       expect(result, contains('"GENERAL.HELLO": "Hello"'));
@@ -88,7 +88,7 @@ void main() {
       // Should not throw exceptions
       expect(() => generateDartCodeKeys(emptyData), returnsNormally);
       expect(() => generateDartCodeValues(emptyData, 'en'), returnsNormally);
-      expect(() => generateJsonValues(emptyData, 'en'), returnsNormally);
+      expect(() => generateJsonValues(emptyData), returnsNormally);
     });
   });
 }
