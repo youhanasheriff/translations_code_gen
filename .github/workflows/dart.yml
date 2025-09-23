@@ -6,7 +6,39 @@ on:
       - 'v[0-9]+.[0-9]+.[0-9]+*'
 
 jobs:
+  # Run tests before publishing
+  test:
+    name: Test before publish
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 'stable'
+      
+      - name: Install dependencies
+        run: dart pub get
+      
+      - name: Analyze project source
+        run: dart analyze --fatal-infos
+      
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+      
+      - name: Run tests
+        run: dart test
+      
+      - name: Test application execution
+        run: dart run bin/translations_code_gen.dart --help
+        continue-on-error: true
+
   publish:
+    name: Publish to pub.dev
+    needs: test
     uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
     # with:
     #   working-directory: path/to/package/within/repository

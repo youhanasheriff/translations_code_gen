@@ -111,9 +111,9 @@ Future<void> _generateDartKeys({
   final outputDir = Directory(
     outputFileName.contains('/')
         ? outputFileName
-              .split('/')
-              .sublist(0, outputFileName.split('/').length - 1)
-              .join('/')
+            .split('/')
+            .sublist(0, outputFileName.split('/').length - 1)
+            .join('/')
         : '.',
   );
 
@@ -178,9 +178,9 @@ Future<void> _generateDartValues({
         final outputDir = Directory(
           outputFileDir.contains('/')
               ? outputFileDir
-                    .split('/')
-                    .sublist(0, outputFileDir.split('/').length - 1)
-                    .join('/')
+                  .split('/')
+                  .sublist(0, outputFileDir.split('/').length - 1)
+                  .join('/')
               : '.',
         );
 
@@ -240,9 +240,9 @@ Future<void> _generateJsonValues({
         final outputDir = Directory(
           outputFileDir.contains('/')
               ? outputFileDir
-                    .split('/')
-                    .sublist(0, outputFileDir.split('/').length - 1)
-                    .join('/')
+                  .split('/')
+                  .sublist(0, outputFileDir.split('/').length - 1)
+                  .join('/')
               : '.',
         );
 
