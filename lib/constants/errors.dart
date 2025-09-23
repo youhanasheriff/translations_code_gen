@@ -1,3 +1,5 @@
+/// Errors and warnings for translations_code_gen.
+/// ConfigErrors: Errors related to configuration.
 class ConfigErrors {
   static final configNotSpecifiedError = '''
 ------------------------------------------------------------------------------------------------------------
@@ -25,9 +27,11 @@ class ConfigErrors {
   -> Configuration file not found at translations_code_gen.yaml
   -> Using pubspec.yaml
 ------------------------------------------------------------------------------------------------------------
- ''';
+''';
 }
 
+/// Errors and warnings for translations_code_gen.
+/// GenerateErrors: Errors related to generate mode.
 class GenerateErrors {
   static final invalidGenerateModeError = '''
 ------------------------------------------------------------------------------------------------------------
@@ -40,6 +44,8 @@ class GenerateErrors {
 ''';
 }
 
+/// Errors and warnings for translations_code_gen.
+/// ArgumentsErrors: Errors related to arguments.
 class ArgumentsErrors {
   static final moreThanOneArgumentError = '''
 ------------------------------------------------------------------------------------------------------------
