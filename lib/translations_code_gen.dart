@@ -38,24 +38,29 @@ void translationCodeGen(List<String> arguments) async {
     exit(1);
   }
 
-  SettingsYaml coonfiguration =
-      SettingsYaml.load(pathToSettings: pathToConfiguration);
+  SettingsYaml configuration = SettingsYaml.load(
+    pathToSettings: pathToConfiguration,
+  );
 
-  final configExist = coonfiguration.selectorExists('translations_code_gen');
+  final configExist = configuration.selectorExists('translations_code_gen');
 
   if (!configExist) {
     stderr.writeln(ConfigErrors.configNotSpecifiedError);
     exit(1);
   }
 
-  String? keysInput =
-      coonfiguration.selectAsMap('translations_code_gen')?['keys']?['input'];
-  String? keysOutput =
-      coonfiguration.selectAsMap('translations_code_gen')?['keys']?['output'];
-  String? valuesInput =
-      coonfiguration.selectAsMap('translations_code_gen')?['values']?['input'];
-  String? valuesOutput =
-      coonfiguration.selectAsMap('translations_code_gen')?['values']?['output'];
+  String? keysInput = configuration.selectAsMap(
+    'translations_code_gen',
+  )?['keys']?['input'];
+  String? keysOutput = configuration.selectAsMap(
+    'translations_code_gen',
+  )?['keys']?['output'];
+  String? valuesInput = configuration.selectAsMap(
+    'translations_code_gen',
+  )?['values']?['input'];
+  String? valuesOutput = configuration.selectAsMap(
+    'translations_code_gen',
+  )?['values']?['output'];
 
   if (keysInput == null ||
       keysOutput == null ||
@@ -67,10 +72,7 @@ void translationCodeGen(List<String> arguments) async {
 
   if (generateMode == SupportedGenerateModes.dart ||
       generateMode == SupportedGenerateModes.dartKeys) {
-    await _generateDartKeys(
-      keysInput: keysInput,
-      keysOutput: keysOutput,
-    );
+    await _generateDartKeys(keysInput: keysInput, keysOutput: keysOutput);
   }
 
   if (generateMode == SupportedGenerateModes.dart ||
@@ -106,12 +108,14 @@ Future<void> _generateDartKeys({
   final dartCode = generateDartCodeKeys(data);
 
   // Create the output directory if it does not exist
-  final outputDir = Directory(outputFileName.contains('/')
-      ? outputFileName
-          .split('/')
-          .sublist(0, outputFileName.split('/').length - 1)
-          .join('/')
-      : '.');
+  final outputDir = Directory(
+    outputFileName.contains('/')
+        ? outputFileName
+              .split('/')
+              .sublist(0, outputFileName.split('/').length - 1)
+              .join('/')
+        : '.',
+  );
 
   if (!await outputDir.exists()) {
     await outputDir.create(recursive: true);
@@ -171,12 +175,14 @@ Future<void> _generateDartValues({
           generateMode: generateMode,
         );
 
-        final outputDir = Directory(outputFileDir.contains('/')
-            ? outputFileDir
-                .split('/')
-                .sublist(0, outputFileDir.split('/').length - 1)
-                .join('/')
-            : '.');
+        final outputDir = Directory(
+          outputFileDir.contains('/')
+              ? outputFileDir
+                    .split('/')
+                    .sublist(0, outputFileDir.split('/').length - 1)
+                    .join('/')
+              : '.',
+        );
 
         if (!await outputDir.exists()) {
           await outputDir.create(recursive: true);
@@ -231,12 +237,14 @@ Future<void> _generateJsonValues({
         // Generate the Dart code
         final jsonStringValue = generateJsonValues(data, lang);
 
-        final outputDir = Directory(outputFileDir.contains('/')
-            ? outputFileDir
-                .split('/')
-                .sublist(0, outputFileDir.split('/').length - 1)
-                .join('/')
-            : '.');
+        final outputDir = Directory(
+          outputFileDir.contains('/')
+              ? outputFileDir
+                    .split('/')
+                    .sublist(0, outputFileDir.split('/').length - 1)
+                    .join('/')
+              : '.',
+        );
 
         if (!await outputDir.exists()) {
           await outputDir.create(recursive: true);
