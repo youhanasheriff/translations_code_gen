@@ -138,8 +138,8 @@ String generateDartCodeKeys(Map<String, dynamic> data) {
         hasPlaceholders = positionalCount > 0 || namedParams.isNotEmpty;
       }
 
-      // Generate the constant - always private
-      final constantName = '_${field.key}';
+      // Generate the constant - publicly accessible
+      final constantName = field.key;
       buffer.writeln(
         '  static const String $constantName = "${entry.key}.${field.key}";',
       );

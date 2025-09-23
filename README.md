@@ -115,30 +115,30 @@ This will generate the following keys to the `lib/translations/keys.dart` file:
 import 'package:easy_localization/easy_localization.dart';
 
 class GENERAL {
-  static const String _HELLO = "GENERAL.HELLO";
-  static String hello() => _HELLO.tr();
-  static const String _WELCOME = "GENERAL.WELCOME";
-  static String welcome() => _WELCOME.tr();
-  static const String _WELCOME_USER = "GENERAL.WELCOME_USER";
-  static String welcomeUser({String? name, }) => _WELCOME_USER.tr(namedArgs: {if (name != null) 'name': name, });
-  static const String _GREETING_WITH_TIME = "GENERAL.GREETING_WITH_TIME";
-  static String greetingWithTime({String? timeOfDay, String? name, }) => _GREETING_WITH_TIME.tr(namedArgs: {if (timeOfDay != null) 'timeOfDay': timeOfDay, if (name != null) 'name': name, });
+  static const String HELLO = "GENERAL.HELLO";
+  static String hello() => HELLO.tr();
+  static const String WELCOME = "GENERAL.WELCOME";
+  static String welcome() => WELCOME.tr();
+  static const String WELCOME_USER = "GENERAL.WELCOME_USER";
+  static String welcomeUser({String? name, }) => WELCOME_USER.tr(namedArgs: {if (name != null) 'name': name, });
+  static const String GREETING_WITH_TIME = "GENERAL.GREETING_WITH_TIME";
+  static String greetingWithTime({String? timeOfDay, String? name, }) => GREETING_WITH_TIME.tr(namedArgs: {if (timeOfDay != null) 'timeOfDay': timeOfDay, if (name != null) 'name': name, });
 }
 
 class HOME {
-  static const String _TITLE = "HOME.TITLE";
-  static String title() => _TITLE.tr();
+  static const String TITLE = "HOME.TITLE";
+  static String title() => TITLE.tr();
 }
 
 class MESSAGES {
-  static const String _SIMPLE_MESSAGE = "MESSAGES.SIMPLE_MESSAGE";
-  static String simpleMessage() => _SIMPLE_MESSAGE.tr();
-  static const String _USER_PROFILE = "MESSAGES.USER_PROFILE";
-  static String userProfile({String? username, String? count, }) => _USER_PROFILE.tr(namedArgs: {if (username != null) 'username': username, if (count != null) 'count': count, });
-  static const String _POSITIONAL_EXAMPLE = "MESSAGES.POSITIONAL_EXAMPLE";
-  static String positionalExample({List<String?>? args, }) => _POSITIONAL_EXAMPLE.tr(args: args?.whereType<String>().toList(), );
-  static const String _MIXED_PLACEHOLDERS = "MESSAGES.MIXED_PLACEHOLDERS";
-  static String mixedPlaceholders({String? name, List<String?>? args, }) => _MIXED_PLACEHOLDERS.tr(args: args?.whereType<String>().toList(), namedArgs: {if (name != null) 'name': name, });
+  static const String SIMPLE_MESSAGE = "MESSAGES.SIMPLE_MESSAGE";
+  static String simpleMessage() => SIMPLE_MESSAGE.tr();
+  static const String USER_PROFILE = "MESSAGES.USER_PROFILE";
+  static String userProfile({String? username, String? count, }) => USER_PROFILE.tr(namedArgs: {if (username != null) 'username': username, if (count != null) 'count': count, });
+  static const String POSITIONAL_EXAMPLE = "MESSAGES.POSITIONAL_EXAMPLE";
+  static String positionalExample({List<String?>? args, }) => POSITIONAL_EXAMPLE.tr(args: args?.whereType<String>().toList(), );
+  static const String MIXED_PLACEHOLDERS = "MESSAGES.MIXED_PLACEHOLDERS";
+  static String mixedPlaceholders({String? name, List<String?>? args, }) => MIXED_PLACEHOLDERS.tr(args: args?.whereType<String>().toList(), namedArgs: {if (name != null) 'name': name, });
 }
 ```
 
@@ -153,21 +153,21 @@ example: `lib/translations/values/en.dart`
 import '../keys.dart'; // sometimes you need to change this path to match your project structure
 
 const Map<String, String> _general  = {
-  GENERAL._HELLO: "Hello",
-  GENERAL._WELCOME: "Welcome",
-  GENERAL._WELCOME_USER: "Welcome {name}!",
-  GENERAL._GREETING_WITH_TIME: "Good {timeOfDay}, {name}!",
+  GENERAL.HELLO: "Hello",
+  GENERAL.WELCOME: "Welcome",
+  GENERAL.WELCOME_USER: "Welcome {name}!",
+  GENERAL.GREETING_WITH_TIME: "Good {timeOfDay}, {name}!",
 };
 
 const Map<String, String> _home  = {
-  HOME._TITLE: "Home",
+  HOME.TITLE: "Home",
 };
 
 const Map<String, String> _messages  = {
-  MESSAGES._SIMPLE_MESSAGE: "This is a simple message",
-  MESSAGES._USER_PROFILE: "User {username} has {count} notifications",
-  MESSAGES._POSITIONAL_EXAMPLE: "First: {}, Second: {}, Third: {}",
-  MESSAGES._MIXED_PLACEHOLDERS: "Hello {name}, you have {} new messages and {} pending tasks",
+  MESSAGES.SIMPLE_MESSAGE: "This is a simple message",
+  MESSAGES.USER_PROFILE: "User {username} has {count} notifications",
+  MESSAGES.POSITIONAL_EXAMPLE: "First: {}, Second: {}, Third: {}",
+  MESSAGES.MIXED_PLACEHOLDERS: "Hello {name}, you have {} new messages and {} pending tasks",
 };
 
 final Map<String, String> enValues = {
@@ -186,21 +186,21 @@ example: `lib/translations/values/ar.dart`
 import '../keys.dart'; // sometimes you need to change this path to match your project structure
 
 const Map<String, String> _general  = {
-  GENERAL._HELLO: "مرحبا",
-  GENERAL._WELCOME: "أهلا بك",
-  GENERAL._WELCOME_USER: "أهلا بك {name}!",
-  GENERAL._GREETING_WITH_TIME: "{timeOfDay} طيب، {name}!",
+  GENERAL.HELLO: "مرحبا",
+  GENERAL.WELCOME: "أهلا بك",
+  GENERAL.WELCOME_USER: "أهلا بك {name}!",
+  GENERAL.GREETING_WITH_TIME: "{timeOfDay} طيب، {name}!",
 };
 
 const Map<String, String> _home  = {
-  HOME._TITLE: "الرئيسية",
+  HOME.TITLE: "الرئيسية",
 };
 
 const Map<String, String> _messages  = {
-  MESSAGES._SIMPLE_MESSAGE: "هذه رسالة بسيطة",
-  MESSAGES._USER_PROFILE: "المستخدم {username} لديه {count} إشعارات",
-  MESSAGES._POSITIONAL_EXAMPLE: "الأول: {}، الثاني: {}، الثالث: {}",
-  MESSAGES._MIXED_PLACEHOLDERS: "مرحبا {name}، لديك {} رسائل جديدة و {} مهام معلقة",
+  MESSAGES.SIMPLE_MESSAGE: "هذه رسالة بسيطة",
+  MESSAGES.USER_PROFILE: "المستخدم {username} لديه {count} إشعارات",
+  MESSAGES.POSITIONAL_EXAMPLE: "الأول: {}، الثاني: {}، الثالث: {}",
+  MESSAGES.MIXED_PLACEHOLDERS: "مرحبا {name}، لديك {} رسائل جديدة و {} مهام معلقة",
 };
 
 final Map<String, String> arValues = {
@@ -312,7 +312,8 @@ Text(MESSAGES.simpleMessage())
 - **Null Safety**: All parameters are nullable with proper null checks
 - **easy_localization Integration**: Generated code works seamlessly with the `easy_localization` package
 - **Automatic Formatting**: Translation keys are converted to camelCase method names
-- **Private Constants**: Internal constants are prefixed with `_` to keep the API clean
+- **Public Constants**: Translation key constants are publicly accessible for direct usage and testing
+- **Flexible Access**: Use either the generated methods or access the constants directly
 
 ### 4. Use the generated code
 
@@ -367,7 +368,50 @@ class MyHomePage extends StatelessWidget {
 }
 ```
 
-### 5. Same as above but with the `--generate` flag
+### 5. Public Constant Accessibility
+
+Starting from version 1.3.6, all translation key constants are publicly accessible, allowing for more flexible usage patterns:
+
+#### Direct Constant Access
+
+You can now access the translation key constants directly:
+
+```dart
+// Access constants directly for custom usage
+String keyValue = GENERAL.HELLO; // "GENERAL.HELLO"
+String translatedText = keyValue.tr(); // "Hello"
+
+// Use in custom translation logic
+Map<String, String> customTranslations = {
+  GENERAL.HELLO: "Custom Hello",
+  HOME.TITLE: "Custom Title",
+};
+
+// Useful for testing and debugging
+print('Translation key: ${MESSAGES.USER_PROFILE}');
+```
+
+#### Benefits of Public Constants
+
+- **Testing**: Easily test translation keys in unit tests
+- **Custom Logic**: Build custom translation logic around the constants
+- **Debugging**: Access raw translation keys for debugging purposes
+- **Integration**: Better integration with other localization tools
+- **Flexibility**: Choose between method calls or direct constant access
+
+#### Usage Patterns
+
+```dart
+// Method approach (recommended for most cases)
+Text(GENERAL.hello())
+
+// Direct constant approach (for custom logic)
+Text(GENERAL.HELLO.tr())
+
+// Both approaches are equivalent and produce the same result
+```
+
+### 6. Same as above but with the `--generate` flag
 
 ```bash
 flutter pub run translations_code_gen --generate=json-values

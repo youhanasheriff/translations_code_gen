@@ -1,3 +1,15 @@
+## 1.3.6
+
+- **Public Constant Accessibility**: Major API enhancement making translation constants publicly accessible:
+  - **Public Constants**: Removed private modifiers from all translation key constants (changed from `_CONSTANT_NAME` to `CONSTANT_NAME`)
+  - **Direct Access**: Translation key constants are now publicly accessible for direct usage and testing
+  - **Flexible Usage**: Developers can now choose between generated methods or direct constant access
+  - **Testing Support**: Public constants enable easier unit testing and debugging of translation keys
+  - **Custom Logic**: Enhanced integration capabilities for custom translation logic and third-party tools
+  - **Backward Compatibility**: Generated methods remain unchanged, ensuring existing code continues to work
+- **Documentation**: Updated README.md with comprehensive examples and usage patterns for public constants
+- **Developer Experience**: Improved flexibility and accessibility of generated translation code
+
 ## 1.3.5
 
 - **Documentation Enhancement**: Comprehensive README.md improvements with detailed placeholder examples:
