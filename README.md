@@ -7,8 +7,8 @@
   <a href="https://t.me/youhanasheriff">
     <img src="https://img.shields.io/static/v1?label=join&message=Hey dev!&labelColor=333940&logo=telegram&logoColor=white&color=229ED9">
   </a>
-  <a href="https://twitter.com/youhanasheriff">
-    <img src="https://img.shields.io/twitter/follow/youhanasheriff?style=flat&label=Follow&color=1DA1F2&labelColor=333940&logo=twitter&logoColor=fff">
+  <a href="https://x.com/youhanasheriff">
+    <img src="https://img.shields.io/x/follow/youhanasheriff?style=flat&label=Follow&color=1DA1F2&labelColor=333940&logo=x&logoColor=fff">
   </a>
 </p>
 
@@ -27,7 +27,7 @@ This is a simple tool to generate the translations code for the Dart/Flutter pro
 
 ```yaml
 dependencies:
-  translations_code_gen: ^1.2.1
+  translations_code_gen: ^1.2.2
 ```
 
 ### 2. Run this commend
