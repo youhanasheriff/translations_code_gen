@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the generateDartCodeKeys function from the generate_dart_keys library, for the Dart programming language.">
+  <title>generateDartCodeKeys function - generate_dart_keys library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">translations_code_gen</a></li>
+    <li><a href="../generators_generate_dart_keys/">generators&#47;generate_dart_keys.dart</a></li>
+    <li class="self-crumb">generateDartCodeKeys function</li>
+  </ol>
+  <div class="self-name">generateDartCodeKeys</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="generators_generate_dart_keys&#47;generators_generate_dart_keys-library-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-function">generateDartCodeKeys</span> function 
+ 
+</h1></div>
+
+    <section class="multi-line-signature">
+        
+<span class="returntype"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span>
+<span class="name ">generateDartCodeKeys</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="generateDartCodeKeys-param-data"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">data</span></span></li>
+</ol>)
+
+        
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Generates Dart code containing translation key constants from a JSON translation file.</p>
+<p>This function reads a JSON file containing translation keys and values, then
+generates a Dart file with class constants that provide type-safe access to
+translation keys. The generated code integrates seamlessly with the
+<code>easy_localization</code> package for Flutter internationalization.</p>
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li><strong>Type-safe key access</strong>: Generates string constants for all translation keys</li>
+<li><strong>Nested structure support</strong>: Handles nested JSON objects with dot notation</li>
+<li><strong>Placeholder integration</strong>: Creates methods for keys with placeholders</li>
+<li><strong>easy_localization compatibility</strong>: Generated code works with easy_localization's <code>tr()</code> method</li>
+<li><strong>Automatic formatting</strong>: Converts keys to camelCase for Dart conventions</li>
+</ul>
+<h2 id="generated-code-structure">Generated Code Structure</h2>
+<p>The function generates a Dart class with:</p>
+<ul>
+<li>Static string constants for each translation key</li>
+<li>Static methods for keys containing placeholders</li>
+<li>Proper documentation for each generated element</li>
+</ul>
+<h2 id="placeholder-handling">Placeholder Handling</h2>
+<p>For translation keys containing placeholders (e.g., <code>{name}</code>, <code>{count}</code>),
+the function generates static methods that accept the required parameters:</p>
+<pre class="language-dart"><code class="language-dart">// For key "welcome_user" with value "Welcome {name}!"
+static String welcomeUser({required String name}) =&gt; 'welcome_user';
+</code></pre>
+<h2 id="example-usage">Example Usage</h2>
+<pre class="language-dart"><code class="language-dart">// Generate keys from translation file
+final Map&lt;String, dynamic&gt; data = {
+  'GENERAL': {
+    'HELLO': 'مرحبا',
+    'WELCOME': 'أهلا بك',
+  },
+  'HOME': {
+    'TITLE': 'الرئيسية',
+  },
+  'SAY_MY_NAME': {
+    'MY_NAME_IS_': 'اسمي {name}',
+    'MY_MOM_AND_DAD_NAME_IS': 'My mom's name is {} and dad's name is {}',
+  },
+};
+
+final dartCode = generateDartCodeKeys(data);
+
+print(dartCode);
+</code></pre>
+<p>Generated Dart file:</p>
+<pre class="language-dart"><code class="language-dart">class TranslationKeys {
+  static const String hello = 'hello';
+  static String welcomeUser({required String name}) =&gt; 'welcome_user';
+  static const String nestedTitle = 'nested.title';
+}
+</code></pre>
+<h2 id="error-handling">Error Handling</h2>
+<p>The function handles various error conditions:</p>
+<ul>
+<li>Missing or invalid input JSON files</li>
+<li>Invalid JSON format</li>
+<li>File system permission errors</li>
+<li>Invalid output path</li>
+</ul>
+<p><code>data</code> A map containing translation data where keys represent class names
+       and values are maps of translation keys to their values.</p>
+<p>Returns a <a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a> containing the generated Dart code with class constants
+        and methods for translation key access.</p>
+<p>Throws:</p>
+<ul>
+<li><a href="https://api.dart.dev/stable/3.9.2/dart-core/ArgumentError-class.html">ArgumentError</a> if the input data map is empty or contains invalid structure</li>
+<li><a href="https://api.dart.dev/stable/3.9.2/dart-core/FormatException-class.html">FormatException</a> if placeholder parsing fails</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li><a href="../generators_generate_dart_values/generateDartCodeValues.html">generateDartCodeValues</a> for generating translation value maps</li>
+<li><a href="../generators_generate_json_values/generateJsonValues.html">generateJsonValues</a> for generating JSON value files</li>
+</ul>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">String generateDartCodeKeys(Map&lt;String, dynamic&gt; data) {
+  final buffer = StringBuffer();
+
+  &#47;&#47; Track if any methods are generated to decide on imports
+  bool hasMethods = false;
+
+  &#47;&#47; Check if any values have placeholders to determine if imports are needed
+  for (var entry in data.entries) {
+    final subMap = entry.value as Map&lt;String, dynamic&gt;;
+    for (var field in subMap.entries) {
+      if (field.value is String) {
+        if (RegExp(r&#39;\{\w*\}&#39;).hasMatch(field.value)) {
+          hasMethods = true;
+          break;
+        }
+      }
+    }
+    if (hasMethods) break;
+  }
+
+  &#47;&#47; Add auto-generated header and ignore directives
+  buffer.writeln(&#39;&#47;&#47; GENERATED CODE - DO NOT MODIFY BY HAND&#39;);
+  buffer.writeln(
+      &#39;&#47;&#47; ignore_for_file: constant_identifier_names, camel_case_types&#39;);
+  buffer.writeln();
+
+  &#47;&#47; Always add import since we&#39;ll generate methods for all constants
+  buffer
+      .writeln(&quot;import &#39;package:easy_localization&#47;easy_localization.dart&#39;;&quot;);
+  buffer.writeln();
+
+  &#47;&#47; Generate the class constants and methods
+  for (var entry in data.entries) {
+    buffer.writeln(&#39;class ${entry.key} {&#39;);
+
+    final subMap = entry.value as Map&lt;String, dynamic&gt;;
+    for (var field in subMap.entries) {
+      &#47;&#47; Check if value is String and has placeholders
+      bool hasPlaceholders = false;
+      int positionalCount = 0;
+      Set&lt;String&gt; namedParams = {};
+
+      if (field.value is String) {
+        final value = field.value as String;
+        &#47;&#47; Parse positional {} count
+        final positionalRegex = RegExp(r&#39;\{\}&#39;);
+        positionalCount = positionalRegex.allMatches(value).length;
+
+        &#47;&#47; Parse named {name}
+        final namedRegex = RegExp(r&#39;\{(\w+)\}&#39;);
+        namedParams =
+            namedRegex.allMatches(value).map((m) =&gt; m.group(1)!).toSet();
+
+        hasPlaceholders = positionalCount &gt; 0 || namedParams.isNotEmpty;
+      }
+
+      &#47;&#47; Generate the constant - always private
+      final constantName = &#39;_${field.key}&#39;;
+      buffer.writeln(
+        &#39;  static const String $constantName = &quot;${entry.key}.${field.key}&quot;;&#39;,
+      );
+
+      &#47;&#47; Convert constant name to camelCase for method name
+      final methodName = _toCamelCase(field.key);
+
+      if (hasPlaceholders) {
+        &#47;&#47; Generate method with parameters for placeholders
+        buffer.write(&#39;  static String $methodName(&#39;);
+
+        &#47;&#47; Add named parameters for named placeholders
+        buffer.write(&#39;{&#39;);
+        if (namedParams.isNotEmpty) {
+          for (var name in namedParams) {
+            buffer.write(&#39;String? $name, &#39;);
+          }
+        }
+        &#47;&#47; Add List&lt;String?&gt;? args for positional placeholders
+        if (positionalCount &gt; 0) {
+          buffer.write(&#39;List&lt;String?&gt;? args, &#39;);
+        }
+        &#47;&#47; Close named parameters block (ensure at least empty {})
+        buffer.write(&#39;}&#39;);
+
+        buffer.write(&#39;) =&gt; $constantName.tr(&#39;);
+
+        &#47;&#47; Add args if positional
+        if (positionalCount &gt; 0) {
+          buffer.write(&#39;args: args?.whereType&lt;String&gt;().toList(), &#39;);
+        }
+
+        &#47;&#47; Add namedArgs if any named params
+        if (namedParams.isNotEmpty) {
+          buffer.write(&#39;namedArgs: {&#39;);
+          for (var name in namedParams) {
+            buffer.write(&#39;if ($name != null) \&#39;$name\&#39;: $name, &#39;);
+          }
+          buffer.write(&#39;}&#39;);
+        }
+
+        buffer.write(&#39;);&#39;);
+        buffer.writeln();
+      } else {
+        &#47;&#47; Generate simple method without parameters for constants without placeholders
+        buffer.writeln(&#39;  static String $methodName() =&gt; $constantName.tr();&#39;);
+      }
+    }
+
+    buffer.writeln(&#39;}&#39;);
+    buffer.writeln();
+  }
+
+  return buffer.toString();
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">translations_code_gen</a></li>
+    <li><a href="../generators_generate_dart_keys/">generate_dart_keys</a></li>
+    <li class="self-crumb">generateDartCodeKeys function</li>
+</ol>
+
+    <h5>generate_dart_keys library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    translations_code_gen
+      1.3.2
+  </span>
+  
+</footer>
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

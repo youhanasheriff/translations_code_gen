@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the generateDartCodeValues function from the generate_dart_values library, for the Dart programming language.">
+  <title>generateDartCodeValues function - generate_dart_values library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">translations_code_gen</a></li>
+    <li><a href="../generators_generate_dart_values/">generators&#47;generate_dart_values.dart</a></li>
+    <li class="self-crumb">generateDartCodeValues function</li>
+  </ol>
+  <div class="self-name">generateDartCodeValues</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="generators_generate_dart_values&#47;generators_generate_dart_values-library-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-function">generateDartCodeValues</span> function 
+ 
+</h1></div>
+
+    <section class="multi-line-signature">
+        
+<span class="returntype"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span>
+<span class="name ">generateDartCodeValues</span>(<wbr><ol class="parameter-list"> <li><span class="parameter" id="generateDartCodeValues-param-data"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">data</span>, </span></li>
+<li><span class="parameter" id="generateDartCodeValues-param-lang"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">lang</span>, {</span></li>
+<li><span class="parameter" id="generateDartCodeValues-param-generateMode"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">generateMode</span> = <span class="default-value">SupportedGenerateModes.dart</span>, </span></li>
+</ol>})
+
+        
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Generates Dart code containing translation value maps from structured translation data.</p>
+<p>This function creates Dart code that defines maps of string keys to string values
+for translation systems. It processes nested translation data and generates
+efficient runtime lookup structures with proper type safety and organization.</p>
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li><strong>Runtime translation lookup</strong>: Generates optimized maps for efficient value retrieval</li>
+<li><strong>Multi-language support</strong>: Creates language-specific value maps</li>
+<li><strong>Nested structure support</strong>: Handles hierarchical translation data</li>
+<li><strong>Type-safe generation</strong>: Produces strongly-typed Dart code</li>
+<li><strong>Memory efficient</strong>: Optimized map structures for runtime performance</li>
+<li><strong>Flexible output modes</strong>: Supports different code generation patterns</li>
+</ul>
+<h2 id="generated-code-structure">Generated Code Structure</h2>
+<p>The function generates Dart code with:</p>
+<ul>
+<li>Private constant maps for each translation category</li>
+<li>A main language-specific map that spreads all category maps</li>
+<li>Proper type annotations and const declarations</li>
+<li>Auto-generated file headers and linter ignore directives</li>
+</ul>
+<h2 id="generation-modes">Generation Modes</h2>
+<p>The function supports two generation modes via <code>generateMode</code>:</p>
+<h3 id="standard-mode-supportedgeneratemodesdart">Standard Mode (<a href="../constants_constants/SupportedGenerateModes/dart-constant.html">SupportedGenerateModes.dart</a>)</h3>
+<p>Uses translation key constants for type-safe access:</p>
+<pre class="language-dart"><code class="language-dart">const Map&lt;String, String&gt; _app = {
+  App.title: "Flutter Demo Home Page",
+  App.message: "You have pushed the button this many times:",
+};
+</code></pre>
+<h3 id="values-only-mode-supportedgeneratemodesdartvalues">Values-Only Mode (<a href="../constants_constants/SupportedGenerateModes/dartValues-constant.html">SupportedGenerateModes.dartValues</a>)</h3>
+<p>Uses string literals for direct key access:</p>
+<pre class="language-dart"><code class="language-dart">const Map&lt;String, String&gt; _app = {
+  "App.title": "Flutter Demo Home Page",
+  "App.message": "You have pushed the button this many times:",
+};
+</code></pre>
+<h2 id="input-data-structure">Input Data Structure</h2>
+<p>The input <code>data</code> should be a nested map structure where:</p>
+<ul>
+<li>Top-level keys represent translation categories (e.g., 'App', 'User')</li>
+<li>Second-level maps contain key-value pairs for translations</li>
+</ul>
+<p>Example input structure:</p>
+<pre class="language-dart"><code class="language-dart">{
+  'App': {
+    'title': 'Flutter Demo Home Page',
+    'message': 'You have pushed the button this many times:',
+  },
+  'User': {
+    'name': 'Name',
+    'email': 'Email Address',
+  }
+}
+</code></pre>
+<h2 id="example-usage">Example Usage</h2>
+<pre class="language-dart"><code class="language-dart">final Map&lt;String, dynamic&gt; translationData = {
+  'App': {
+    'title': 'Flutter Demo Home Page',
+    'message': 'You have pushed the button this many times:',
+  },
+};
+
+// Generate standard mode (with key constants)
+final dartCode = generateDartCodeValues(translationData, 'en');
+print(dartCode);
+// Output:
+// const Map&lt;String, String&gt; _app = {
+//   App.title: "Flutter Demo Home Page",
+//   App.message: "You have pushed the button this many times:",
+// };
+//
+// final Map&lt;String, String&gt; enValues = {
+//   ..._app,
+// };
+
+// Generate values-only mode (with string keys)
+final dartValuesCode = generateDartCodeValues(
+  translationData, 
+  'en', 
+  generateMode: SupportedGenerateModes.dartValues
+);
+print(dartValuesCode);
+// Output:
+// const Map&lt;String, String&gt; _app = {
+//   "App.title": "Flutter Demo Home Page",
+//   "App.message": "You have pushed the button this many times:",
+// };
+//
+// final Map&lt;String, String&gt; enValues = {
+//   ..._app,
+// };
+</code></pre>
+<h2 id="string-escaping">String Escaping</h2>
+<p>The function automatically handles string escaping for:</p>
+<ul>
+<li>Double quotes: <code>"</code> becomes <code>\"</code></li>
+<li>Newlines: <code>\n</code> becomes <code>\\n</code></li>
+</ul>
+<p>This ensures the generated Dart code is syntactically correct and safe.</p>
+<h2 id="generated-file-structure">Generated File Structure</h2>
+<p>The output includes:</p>
+<ul>
+<li>Auto-generated file header warning</li>
+<li>Linter ignore directives for constant naming</li>
+<li>Import statements (in standard mode)</li>
+<li>Category-specific private maps</li>
+<li>Main language values map</li>
+</ul>
+<p><code>data</code> A nested map containing translation data organized by categories.
+       Each top-level key represents a translation category, and each
+       value should be a Map&lt;String, dynamic&gt; containing the translations.</p>
+<p><code>lang</code> The language identifier used to name the generated values map.
+       The final map will be named <code>{lang}Values</code> (e.g., 'en' -&gt; 'enValues').</p>
+<p><code>generateMode</code> The code generation mode that determines the output format.
+              Defaults to <a href="../constants_constants/SupportedGenerateModes/dart-constant.html">SupportedGenerateModes.dart</a> for standard mode.
+              Use <a href="../constants_constants/SupportedGenerateModes/dartValues-constant.html">SupportedGenerateModes.dartValues</a> for values-only mode.</p>
+<p>Returns a <a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a> containing the complete generated Dart code ready to be
+        written to a file or used in code generation pipelines.</p>
+<p>See also:</p>
+<ul>
+<li><a href="../constants_constants/SupportedGenerateModes-class.html">SupportedGenerateModes</a> for available generation modes</li>
+<li>Translation key generation functions for creating the corresponding key constants</li>
+</ul>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">String generateDartCodeValues(
+  Map&lt;String, dynamic&gt; data,
+  String lang, {
+  String generateMode = SupportedGenerateModes.dart,
+}) {
+  final isDartValuesOnly = generateMode == SupportedGenerateModes.dartValues;
+
+  final buffer = StringBuffer();
+  final entryKeys = [];
+
+  buffer.writeln(&#39;&#47;&#47; GENERATED CODE - DO NOT MODIFY BY HAND&#39;);
+  buffer.writeln(&#39;&#47;&#47; ignore_for_file: constant_identifier_names&#39;);
+  buffer.writeln();
+  if (!isDartValuesOnly) {
+    buffer.writeln(&quot;import &#39;..&#47;keys.dart&#39;;&quot;);
+    buffer.writeln();
+  }
+
+  &#47;&#47; Generate the class
+  for (var entry in data.entries) {
+    buffer.write(
+      &#39;const Map&lt;String, String&gt; _${entry.key.toLowerCase()}  = {\n&#39;,
+    );
+    entryKeys.add(&#39;_${entry.key.toLowerCase()}&#39;);
+
+    for (var field in (entry.value as Map&lt;String, dynamic&gt;).entries) {
+      final quote = isDartValuesOnly ? &#39;&quot;&#39; : &#39;&#39;;
+      buffer.writeln(
+        &#39;  $quote${entry.key}.${field.key}$quote: &quot;${field.value.replaceAll(&#39;&quot;&#39;, &#39;\\&quot;&#39;).replaceAll(&#39;\n&#39;, &#39;\\n&#39;)}&quot;,&#39;,
+      );
+    }
+    buffer.writeln(&#39;};&#39;);
+    buffer.writeln();
+  }
+
+  buffer.writeln(&#39;final Map&lt;String, String&gt; ${lang}Values = {&#39;);
+  for (var entryKey in entryKeys) {
+    buffer.writeln(&#39;  ...$entryKey,&#39;);
+  }
+  buffer.writeln(&#39;};&#39;);
+
+  return buffer.toString();
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">translations_code_gen</a></li>
+    <li><a href="../generators_generate_dart_values/">generate_dart_values</a></li>
+    <li class="self-crumb">generateDartCodeValues function</li>
+</ol>
+
+    <h5>generate_dart_values library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    translations_code_gen
+      1.3.2
+  </span>
+  
+</footer>
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the generateJsonValues function from the generate_json_values library, for the Dart programming language.">
+  <title>generateJsonValues function - generate_json_values library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="../" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">translations_code_gen</a></li>
+    <li><a href="../generators_generate_json_values/">generators&#47;generate_json_values.dart</a></li>
+    <li class="self-crumb">generateJsonValues function</li>
+  </ol>
+  <div class="self-name">generateJsonValues</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div
+      id="dartdoc-main-content"
+      class="main-content"
+      data-above-sidebar="generators_generate_json_values&#47;generators_generate_json_values-library-sidebar.html"
+      data-below-sidebar="">
+      <div>
+<h1><span class="kind-function">generateJsonValues</span> function 
+ 
+</h1></div>
+
+    <section class="multi-line-signature">
+        
+<span class="returntype"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span>
+<span class="name ">generateJsonValues</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="generateJsonValues-param-data"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.9.2/dart-core/Map-class.html">Map</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a></span>, <span class="type-parameter">dynamic</span>&gt;</span></span> <span class="parameter-name">data</span></span></li>
+</ol>)
+
+        
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Generates flattened JSON strings from nested translation data structures.</p>
+<p>This function converts hierarchical translation data into flattened JSON format
+where nested keys are joined with dot notation. This is particularly useful
+for translation systems that need to work with flat key structures while
+maintaining the organizational benefits of nested source data.</p>
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li><strong>Nested structure flattening</strong>: Converts hierarchical data to dot-notation keys</li>
+<li><strong>JSON output format</strong>: Generates valid, formatted JSON strings</li>
+<li><strong>Type preservation</strong>: Maintains value types during conversion</li>
+<li><strong>Readable formatting</strong>: Produces properly indented JSON output</li>
+<li><strong>Translation system integration</strong>: Optimized for localization workflows</li>
+</ul>
+<h2 id="flattening-algorithm">Flattening Algorithm</h2>
+<p>The function recursively processes nested maps and arrays:</p>
+<ol>
+<li><strong>Object flattening</strong>: Nested objects become dot-separated keys</li>
+<li><strong>Array handling</strong>: Array indices are included in the flattened keys</li>
+<li><strong>Value preservation</strong>: Leaf values maintain their original types</li>
+<li><strong>Key concatenation</strong>: Parent keys are joined with child keys using dots</li>
+</ol>
+<h2 id="input-data-structure">Input Data Structure</h2>
+<p>The input <code>data</code> should be a nested map structure where:</p>
+<ul>
+<li>Keys are strings representing translation categories or namespaces</li>
+<li>Values can be nested maps, arrays, or primitive values</li>
+<li>Nested structures represent hierarchical organization</li>
+</ul>
+<h2 id="flattening-examples">Flattening Examples</h2>
+<h3 id="basic-nested-object">Basic Nested Object</h3>
+<pre class="language-dart"><code class="language-dart">final input = {
+  'App': {
+    'title': 'Flutter Demo Home Page',
+    'message': 'You have pushed the button this many times:',
+  },
+  'User': {
+    'profile': {
+      'name': 'Name',
+      'email': 'Email Address'
+    }
+  }
+};
+
+final result = generateJsonValues(input);
+// Output:
+// {
+//   "App.title": "Flutter Demo Home Page",
+//   "App.message": "You have pushed the button this many times:",
+//   "User.profile.name": "Name",
+//   "User.profile.email": "Email Address"
+// }
+</code></pre>
+<h3 id="array-handling">Array Handling</h3>
+<pre class="language-dart"><code class="language-dart">final input = {
+  'messages': {
+    'errors': ['Error 1', 'Error 2', 'Error 3']
+  }
+};
+
+final result = generateJsonValues(input);
+// Output:
+// {
+//   "messages.errors.0": "Error 1",
+//   "messages.errors.1": "Error 2",
+//   "messages.errors.2": "Error 3"
+// }
+</code></pre>
+<h3 id="mixed-data-types">Mixed Data Types</h3>
+<pre class="language-dart"><code class="language-dart">final input = {
+  'config': {
+    'enabled': true,
+    'timeout': 5000,
+    'features': {
+      'darkMode': false,
+      'notifications': true
+    }
+  }
+};
+
+final result = generateJsonValues(input);
+// Output:
+// {
+//   "config.enabled": true,
+//   "config.timeout": 5000,
+//   "config.features.darkMode": false,
+//   "config.features.notifications": true
+// }
+</code></pre>
+<h2 id="use-cases">Use Cases</h2>
+<p>This function is particularly useful for:</p>
+<ul>
+<li><strong>Translation file processing</strong>: Converting nested translation files to flat formats</li>
+<li><strong>Configuration flattening</strong>: Simplifying complex configuration structures</li>
+<li><strong>API data transformation</strong>: Preparing nested data for systems expecting flat structures</li>
+<li><strong>Database storage</strong>: Converting hierarchical data for key-value storage systems</li>
+<li><strong>Localization workflows</strong>: Integrating with translation management systems</li>
+</ul>
+<h2 id="json-output-format">JSON Output Format</h2>
+<p>The generated JSON is:</p>
+<ul>
+<li><strong>Well-formatted</strong>: Properly indented with 2-space indentation</li>
+<li><strong>Valid JSON</strong>: Complies with JSON specification standards</li>
+<li><strong>UTF-8 compatible</strong>: Handles international characters correctly</li>
+<li><strong>Escaped properly</strong>: Special characters are properly escaped</li>
+</ul>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<ul>
+<li><strong>Memory efficient</strong>: Processes data in a single pass</li>
+<li><strong>Recursive processing</strong>: Handles arbitrarily deep nesting</li>
+<li><strong>Type safe</strong>: Preserves original data types during conversion</li>
+<li><strong>String optimization</strong>: Efficient string concatenation for key building</li>
+</ul>
+<p><code>data</code> A nested map containing the hierarchical data to be flattened.
+       Keys should be strings, and values can be maps, lists, or primitive types.
+       The structure will be recursively processed to create flattened keys.</p>
+<p>Returns a <a href="https://api.dart.dev/stable/3.9.2/dart-core/String-class.html">String</a> containing the formatted JSON representation of the flattened data.
+        The JSON is properly indented and contains dot-notation keys for all
+        nested structures. Primitive values maintain their original types.</p>
+<p>Throws:</p>
+<ul>
+<li><a href="https://api.dart.dev/stable/3.9.2/dart-core/ArgumentError-class.html">ArgumentError</a> if the input data contains unsupported data types</li>
+<li><a href="https://api.dart.dev/stable/3.9.2/dart-convert/JsonUnsupportedObjectError-class.html">JsonUnsupportedObjectError</a> if the data contains objects that cannot be JSON-encoded</li>
+</ul>
+<p>See also:</p>
+<ul>
+<li><a href="../generators_generate_dart_values/generateDartCodeValues.html">generateDartCodeValues</a> for generating Dart code from the same data structure</li>
+<li><a href="../generators_generate_dart_keys/generateDartCodeKeys.html">generateDartCodeKeys</a> for generating translation key constants</li>
+<li><a href="https://api.dart.dev/stable/3.9.2/dart-convert/JsonEncoder-class.html">JsonEncoder</a> for the underlying JSON encoding functionality</li>
+</ul>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">String generateJsonValues(Map&lt;String, dynamic&gt; data) {
+  final buffer = StringBuffer();
+
+  &#47;&#47; Generate the class
+  buffer.writeln(&#39;{&#39;);
+  for (var entry in data.entries) {
+    for (var field in (entry.value as Map&lt;String, dynamic&gt;).entries) {
+      final isLastLine = entry.key == data.keys.last &amp;&amp;
+          field.key == (entry.value as Map&lt;String, dynamic&gt;).keys.last;
+
+      buffer.writeln(
+        &#39;  &quot;${entry.key}.${field.key}&quot;: &quot;${field.value.replaceAll(&#39;&quot;&#39;, &#39;\\&quot;&#39;).replaceAll(&#39;\n&#39;, &#39;\\n&#39;)}&quot;${isLastLine ? &#39;&#39; : &#39;,&#39;}&#39;,
+      );
+    }
+  }
+  buffer.writeln(&#39;}&#39;);
+
+  return buffer.toString();
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="../index.html">translations_code_gen</a></li>
+    <li><a href="../generators_generate_json_values/">generate_json_values</a></li>
+    <li class="self-crumb">generateJsonValues function</li>
+</ol>
+
+    <h5>generate_json_values library</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-left-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+</main>
+<footer>
+  <span class="no-break">
+    translations_code_gen
+      1.3.2
+  </span>
+  
+</footer>
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+

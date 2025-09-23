@@ -1,32 +1,85 @@
 import '../constants/constants.dart';
 
-/// Generates a Dart code that defines a [Map] of [String] keys to
-/// [String] values for a given [Map] of [String] keys to [dynamic]
-/// values.
-/// The generated [Map] will have the same keys as the input map,
-/// and it will have values that are the concatenation of the key
-/// in the input map and the key in the associated value map.
-/// The generated [Map] will be assigned to a variable named
-/// [lang]Values, where [lang] is the name of the language
-/// specified in the input map.
-/// The generated code includes a header indicating that it was
-/// auto-generated, and it includes the necessary ignore directives
-/// to avoid linter warnings for constant identifier names.
-/// The returned [String] contains the generated Dart code.
-/// Example:
+/// Generates Dart code containing translation value maps from structured translation data.
+///
+/// This function creates Dart code that defines maps of string keys to string values
+/// for translation systems. It processes nested translation data and generates
+/// efficient runtime lookup structures with proper type safety and organization.
+///
+/// ## Key Features
+/// 
+/// - **Runtime translation lookup**: Generates optimized maps for efficient value retrieval
+/// - **Multi-language support**: Creates language-specific value maps
+/// - **Nested structure support**: Handles hierarchical translation data
+/// - **Type-safe generation**: Produces strongly-typed Dart code
+/// - **Memory efficient**: Optimized map structures for runtime performance
+/// - **Flexible output modes**: Supports different code generation patterns
+///
+/// ## Generated Code Structure
+/// 
+/// The function generates Dart code with:
+/// - Private constant maps for each translation category
+/// - A main language-specific map that spreads all category maps
+/// - Proper type annotations and const declarations
+/// - Auto-generated file headers and linter ignore directives
+///
+/// ## Generation Modes
+/// 
+/// The function supports two generation modes via [generateMode]:
+/// 
+/// ### Standard Mode ([SupportedGenerateModes.dart])
+/// Uses translation key constants for type-safe access:
 /// ```dart
-/// final Map<String, dynamic> data = {
-/// 'App': {
+/// const Map<String, String> _app = {
+///   App.title: "Flutter Demo Home Page",
+///   App.message: "You have pushed the button this many times:",
+/// };
+/// ```
+/// 
+/// ### Values-Only Mode ([SupportedGenerateModes.dartValues])
+/// Uses string literals for direct key access:
+/// ```dart
+/// const Map<String, String> _app = {
+///   "App.title": "Flutter Demo Home Page",
+///   "App.message": "You have pushed the button this many times:",
+/// };
+/// ```
+///
+/// ## Input Data Structure
+/// 
+/// The input [data] should be a nested map structure where:
+/// - Top-level keys represent translation categories (e.g., 'App', 'User')
+/// - Second-level maps contain key-value pairs for translations
+/// 
+/// Example input structure:
+/// ```dart
+/// {
+///   'App': {
+///     'title': 'Flutter Demo Home Page',
+///     'message': 'You have pushed the button this many times:',
+///   },
+///   'User': {
+///     'name': 'Name',
+///     'email': 'Email Address',
+///   }
+/// }
+/// ```
+///
+/// ## Example Usage
+/// 
+/// ```dart
+/// final Map<String, dynamic> translationData = {
+///   'App': {
 ///     'title': 'Flutter Demo Home Page',
 ///     'message': 'You have pushed the button this many times:',
 ///   },
 /// };
 ///
-/// final dartCode = generateDartCodeValues(data, 'en');
-///
-/// print(dartCode); // [generateMode] set to [SupportedGenerateModes.dart]: (which is the default)
-/// // Prints:
-/// // const Map<String, String> _app  = {
+/// // Generate standard mode (with key constants)
+/// final dartCode = generateDartCodeValues(translationData, 'en');
+/// print(dartCode);
+/// // Output:
+/// // const Map<String, String> _app = {
 /// //   App.title: "Flutter Demo Home Page",
 /// //   App.message: "You have pushed the button this many times:",
 /// // };
@@ -35,11 +88,15 @@ import '../constants/constants.dart';
 /// //   ..._app,
 /// // };
 ///
-/// final dartValuesOnlyCode = generateDartCodeValues(data, 'en', generateMode: SupportedGenerateModes.dartValues);
-///
-/// print(dartValuesOnlyCode); // [generateMode] set to [SupportedGenerateModes.dartValues]:
-/// // Prints:
-/// // const Map<String, String> _app  = {
+/// // Generate values-only mode (with string keys)
+/// final dartValuesCode = generateDartCodeValues(
+///   translationData, 
+///   'en', 
+///   generateMode: SupportedGenerateModes.dartValues
+/// );
+/// print(dartValuesCode);
+/// // Output:
+/// // const Map<String, String> _app = {
 /// //   "App.title": "Flutter Demo Home Page",
 /// //   "App.message": "You have pushed the button this many times:",
 /// // };
@@ -47,9 +104,42 @@ import '../constants/constants.dart';
 /// // final Map<String, String> enValues = {
 /// //   ..._app,
 /// // };
-///
 /// ```
 ///
+/// ## String Escaping
+/// 
+/// The function automatically handles string escaping for:
+/// - Double quotes: `"` becomes `\"`
+/// - Newlines: `\n` becomes `\\n`
+/// 
+/// This ensures the generated Dart code is syntactically correct and safe.
+///
+/// ## Generated File Structure
+/// 
+/// The output includes:
+/// - Auto-generated file header warning
+/// - Linter ignore directives for constant naming
+/// - Import statements (in standard mode)
+/// - Category-specific private maps
+/// - Main language values map
+///
+/// [data] A nested map containing translation data organized by categories.
+///        Each top-level key represents a translation category, and each
+///        value should be a Map<String, dynamic> containing the translations.
+/// 
+/// [lang] The language identifier used to name the generated values map.
+///        The final map will be named `{lang}Values` (e.g., 'en' -> 'enValues').
+/// 
+/// [generateMode] The code generation mode that determines the output format.
+///               Defaults to [SupportedGenerateModes.dart] for standard mode.
+///               Use [SupportedGenerateModes.dartValues] for values-only mode.
+/// 
+/// Returns a [String] containing the complete generated Dart code ready to be
+///         written to a file or used in code generation pipelines.
+/// 
+/// See also:
+/// * [SupportedGenerateModes] for available generation modes
+/// * Translation key generation functions for creating the corresponding key constants
 String generateDartCodeValues(
   Map<String, dynamic> data,
   String lang, {

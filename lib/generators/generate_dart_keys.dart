@@ -1,26 +1,39 @@
-/// Generates a Dart code that defines class constants for keys
-/// of a given [Map] of [String] keys to [dynamic] values.
-/// The generated class name will be the same as the key in the
-/// input map, and it will have constants for each key in its
-/// associated value map.
+/// Generates Dart code containing translation key constants from a JSON translation file.
 ///
-/// For keys whose values are strings containing placeholders (positional `{}` or
-/// named `{name}`), a static method is generated that calls the `.tr()` extension
-/// from easy_localization. Positional placeholders generate a single named
-/// parameter `{List<String?>? args}`, and named placeholders generate named
-/// parameters (e.g., `{String? name}`). No additional parameters are included.
+/// This function reads a JSON file containing translation keys and values, then
+/// generates a Dart file with class constants that provide type-safe access to
+/// translation keys. The generated code integrates seamlessly with the
+/// `easy_localization` package for Flutter internationalization.
 ///
-/// The method name is the camelCase version of the constant name.
+/// ## Key Features
+/// 
+/// - **Type-safe key access**: Generates string constants for all translation keys
+/// - **Nested structure support**: Handles nested JSON objects with dot notation
+/// - **Placeholder integration**: Creates methods for keys with placeholders
+/// - **easy_localization compatibility**: Generated code works with easy_localization's `tr()` method
+/// - **Automatic formatting**: Converts keys to camelCase for Dart conventions
 ///
-/// The generated code includes a header indicating that it was
-/// auto-generated, and it includes the necessary ignore directives
-/// to avoid linter warnings for constant_identifier_names and
-/// camel_case_types. It imports `easy_localization` only if methods are generated.
+/// ## Generated Code Structure
+/// 
+/// The function generates a Dart class with:
+/// - Static string constants for each translation key
+/// - Static methods for keys containing placeholders
+/// - Proper documentation for each generated element
 ///
-/// The returned [String] contains the generated Dart code.
-///
-/// Example:
+/// ## Placeholder Handling
+/// 
+/// For translation keys containing placeholders (e.g., `{name}`, `{count}`),
+/// the function generates static methods that accept the required parameters:
+/// 
 /// ```dart
+/// // For key "welcome_user" with value "Welcome {name}!"
+/// static String welcomeUser({required String name}) => 'welcome_user';
+/// ```
+///
+/// ## Example Usage
+/// 
+/// ```dart
+/// // Generate keys from translation file
 /// final Map<String, dynamic> data = {
 ///   'GENERAL': {
 ///     'HELLO': 'مرحبا',
@@ -39,6 +52,37 @@
 ///
 /// print(dartCode);
 /// ```
+/// 
+/// Generated Dart file:
+/// ```dart
+/// class TranslationKeys {
+///   static const String hello = 'hello';
+///   static String welcomeUser({required String name}) => 'welcome_user';
+///   static const String nestedTitle = 'nested.title';
+/// }
+/// ```
+///
+/// ## Error Handling
+/// 
+/// The function handles various error conditions:
+/// - Missing or invalid input JSON files
+/// - Invalid JSON format
+/// - File system permission errors
+/// - Invalid output path
+///
+/// [data] A map containing translation data where keys represent class names
+///        and values are maps of translation keys to their values.
+/// 
+/// Returns a [String] containing the generated Dart code with class constants
+///         and methods for translation key access.
+/// 
+/// Throws:
+/// - [ArgumentError] if the input data map is empty or contains invalid structure
+/// - [FormatException] if placeholder parsing fails
+/// 
+/// See also:
+/// * [generateDartCodeValues] for generating translation value maps
+/// * [generateJsonValues] for generating JSON value files
 String generateDartCodeKeys(Map<String, dynamic> data) {
   final buffer = StringBuffer();
 
@@ -153,8 +197,36 @@ String generateDartCodeKeys(Map<String, dynamic> data) {
   return buffer.toString();
 }
 
-/// Converts a string to camelCase.
-/// Example: MY_NAME_IS_ -> myNameIs
+/// Converts a snake_case or UPPER_CASE string to camelCase format.
+/// 
+/// This helper function transforms strings with underscores into camelCase
+/// format suitable for Dart method and variable names. It handles various
+/// input formats including UPPER_CASE, snake_case, and mixed formats.
+/// 
+/// ## Conversion Rules
+/// 
+/// - Splits the input string on underscores
+/// - Converts all parts to lowercase
+/// - Capitalizes the first letter of each part except the first
+/// - Removes empty parts (consecutive underscores)
+/// - Joins all parts without separators
+/// 
+/// ## Examples
+/// 
+/// ```dart
+/// _toCamelCase('MY_NAME_IS_')        // Returns: 'myNameIs'
+/// _toCamelCase('hello_world')        // Returns: 'helloWorld'
+/// _toCamelCase('WELCOME_USER')       // Returns: 'welcomeUser'
+/// _toCamelCase('single')             // Returns: 'single'
+/// _toCamelCase('MULTIPLE__UNDER')    // Returns: 'multipleUnder'
+/// ```
+/// 
+/// [input] The input string to convert to camelCase. Should contain
+///         underscores as word separators. Empty strings and strings
+///         without underscores are handled gracefully.
+/// 
+/// Returns a [String] in camelCase format suitable for Dart identifiers.
+///         Returns an empty string if input is empty.
 String _toCamelCase(String input) {
   final parts =
       input.toLowerCase().split('_').where((part) => part.isNotEmpty).toList();

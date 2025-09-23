@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="translations_code_gen API docs, for the Dart programming language.">
+  <title>translations_code_gen - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+  
+</head>
+
+<body data-base-href="" data-using-base-href="false" class="light-theme">
+<div id="overlay-under-drawer"></div>
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://youhanasheriff.com">translations_code_gen package</a></li>
+  </ol>
+  <div class="self-name">translations_code_gen</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <button class="toggle" id="theme-button" title="Toggle between light and dark mode" aria-label="Light and dark mode toggle">
+    <span id="dark-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      dark_mode
+    </span>
+    <span id="light-theme-button" class="material-symbols-outlined" aria-hidden="true">
+      light_mode
+    </span>
+  </button>
+</header>
+<main>
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="translations-code-generator">Translations code generator</h1>
+<p align="center">
+  <a href="https://pub.dev/packages/translations_code_gen">
+    <img src="https://img.shields.io/pub/v/translations_code_gen?translations_code_gen=pub.dev&amp;labelColor=333940&amp;logo=dart">
+  </a>
+  <a href="https://t.me/youhanasheriff">
+    <img src="https://img.shields.io/static/v1?label=join&amp;message=Hey dev!&amp;labelColor=333940&amp;logo=telegram&amp;logoColor=white&amp;color=229ED9">
+  </a>
+  <a href="https://x.com/youhanasheriff">
+    <img src="https://img.shields.io/x/follow/youhanasheriff?style=flat&amp;label=Follow&amp;color=1DA1F2&amp;labelColor=333940&amp;logo=x&amp;logoColor=fff">
+  </a>
+</p>
+<p align="center">
+This is a simple tool to generate the translations code for the Dart/Flutter projects.
+</p>
+<p align="center">
+  <a href="https://youhanasheriff.com">Quickstart</a> •
+  <a href="https://pub.dev/packages/translations_code_gen">Pub.dev</a>
+</p>
+<h2 id="install">Install</h2>
+<h3 id="1-add-the-dependency">1. Add the dependency</h3>
+<pre class="language-yaml"><code class="language-yaml">dependencies:
+  translations_code_gen: ^1.3.2
+</code></pre>
+<h3 id="2-run-this-commend">2. Run this commend</h3>
+<pre class="language-bash"><code class="language-bash">flutter pub get
+</code></pre>
+<h2 id="usage">Usage</h2>
+<h3 id="1-create-a-translations-files-in-assets-folder">1. Create a translations files in <code>assets</code> folder</h3>
+<p>Create a folder called <code>assets</code> in the root of your project and create a file called <code>en.json</code> and <code>ar.json</code> and add the following content:</p>
+<p>example: <code>assets/translations/en.json</code></p>
+<pre class="language-json"><code class="language-json">{
+  "GENERAL": {
+    "HELLO": "Hello",
+    "WELCOME": "Welcome"
+  },
+  "HOME": {
+    "TITLE": "Home"
+  }
+}
+</code></pre>
+<p>example: <code>assets/translations/ar.json</code></p>
+<pre class="language-json"><code class="language-json">{
+  "GENERAL": {
+    "HELLO": "مرحبا",
+    "WELCOME": "أهلا بك"
+  },
+  "HOME": {
+    "TITLE": "الرئيسية"
+  }
+}
+</code></pre>
+<h3 id="2-add-the-translations-file-paths-to-the-pubspecyaml-or-translations_code_genyaml-file">2. Add the translations file paths to the <code>pubspec.yaml</code> or <code>translations_code_gen.yaml</code> file</h3>
+<pre class="language-yaml"><code class="language-yaml">translations_code_gen:
+  keys:
+    input: 'assets/translations/en.json'
+    output: 'lib/translations/keys.dart'
+  values:
+    input: 'assets/translations/'
+    output: 'lib/translations/values/'
+</code></pre>
+<p>Run this command to generate the translations <code>keys</code> and <code>values</code> to the <code>output</code>:</p>
+<pre class="language-bash"><code class="language-bash">flutter pub run translations_code_gen
+</code></pre>
+<p>The <code>-g</code> or <code>--generate</code> flag is optional, if you don't use it, the tool will normally generate dart keys and values code for you.</p>
+<p>This will generate the following keys to the <code>lib/translations/keys.dart</code> file:</p>
+<pre class="language-dart"><code class="language-dart">// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: constant_identifier_names, camel_case_types
+
+class GENERAL {
+  static const String HELLO = "GENERAL.HELLO";
+  static const String WELCOME = "GENERAL.WELCOME";
+}
+
+class HOME {
+  static const String TITLE = "HOME.TITLE";
+}
+</code></pre>
+<p>and the following values to the <code>en.dart</code> and <code>ar.dart</code> file to <code>lib/translations/values/</code></p>
+<p>example: <code>lib/translations/values/en.dart</code></p>
+<pre class="language-dart"><code class="language-dart">// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: constant_identifier_names
+
+import '../keys.dart'; // sometimes you need to change this path to match your project structure
+
+const Map&lt;String, String&gt; _general  = {
+  GENERAL.HELLO: "Hello",
+  GENERAL.WELCOME: "Welcome",
+};
+
+const Map&lt;String, String&gt; _home  = {
+  HOME.TITLE: "Home",
+};
+
+final Map&lt;String, String&gt; enValues = {
+  ..._general,
+  ..._home,
+};
+</code></pre>
+<p>example: <code>lib/translations/values/ar.dart</code></p>
+<pre class="language-dart"><code class="language-dart">// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: constant_identifier_names
+
+import '../keys.dart'; // sometimes you need to change this path to match your project structure
+
+const Map&lt;String, String&gt; _general  = {
+  GENERAL.HELLO: "مرحبا",
+  GENERAL.WELCOME: "أهلا بك",
+};
+
+const Map&lt;String, String&gt; _home  = {
+  HOME.TITLE: "الرئيسية",
+};
+
+final Map&lt;String, String&gt; enValues = {
+  ..._general,
+  ..._home,
+};
+</code></pre>
+<p>You might have to change the keys import path to match your project structure.</p>
+<h3 id="4-use-the-generated-code">4. Use the generated code</h3>
+<pre class="language-dart"><code class="language-dart">import 'package:flutter/material.dart';
+
+import './translations/keys.dart';
+
+// any translation package
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(HOME.TITLE.tr()),
+      ),
+      body: Center(
+        child: Text(GENERAL.HELLO.tr()),
+      ),
+    );
+  }
+}
+</code></pre>
+<h3 id="5-same-as-above-but-with-the---generate-flag">5. Same as above but with the <code>--generate</code> flag</h3>
+<pre class="language-bash"><code class="language-bash">flutter pub run translations_code_gen --generate=json-values
+</code></pre>
+<p>There are 4 types of code generation mode:</p>
+<ul>
+<li><code>dart</code> (default): generate dart keys and values code</li>
+<li><code>dart-keys</code>: generate dart keys only.</li>
+<li><code>dart-values</code>: generate dart values only.</li>
+<li><code>json-values</code>: generate json values only.</li>
+</ul>
+<h2 id="output-with-the---generatejson-values-flag">Output with the <code>--generate=json-values</code> flag</h2>
+<p>example: <code>lib/translations/values/en.json</code></p>
+<pre class="language-json"><code class="language-json">{
+  "GENERAL.HELLO": "Hello",
+  "GENERAL.WELCOME": "Welcome",
+  "HOME.TITLE": "Home"
+}
+</code></pre>
+<p>example: <code>lib/translations/values/ar.json</code></p>
+<pre class="language-json"><code class="language-json">{
+  "GENERAL.HELLO": "مرحبا",
+  "GENERAL.WELCOME": "أهلا بك",
+  "HOME.TITLE": "الرئيسية"
+}
+</code></pre>
+<h2 id="development">Development</h2>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li><strong>Dart SDK</strong>: <code>&gt;=3.1.0 &lt;4.0.0</code> (recommended: <code>3.9.2</code> or later)</li>
+<li><strong>Flutter SDK</strong>: <code>3.35.4</code> or later (when using FVM)</li>
+</ul>
+<h3 id="setting-up-with-fvm-flutter-version-manager">Setting up with FVM (Flutter Version Manager)</h3>
+<p>This project uses <a href="https://fvm.app/">FVM</a> for Flutter and Dart SDK version management to ensure consistent development environments.</p>
+<h4 id="1-install-fvm">1. Install FVM</h4>
+<pre class="language-bash"><code class="language-bash"># Using Homebrew (macOS)
+brew tap leoafarias/fvm
+brew install fvm
+
+# Using pub global
+dart pub global activate fvm
+
+# Using Chocolatey (Windows)
+choco install fvm
+</code></pre>
+<h4 id="2-install-and-use-the-projects-flutter-version">2. Install and use the project's Flutter version</h4>
+<pre class="language-bash"><code class="language-bash"># Install the required Flutter version
+fvm install 3.35.4
+
+# Use it for this project
+fvm use 3.35.4
+</code></pre>
+<h4 id="3-run-commands-with-fvm">3. Run commands with FVM</h4>
+<pre class="language-bash"><code class="language-bash"># Get dependencies
+fvm dart pub get
+
+# Run the application
+fvm dart run bin/translations_code_gen.dart
+
+# Analyze code
+fvm dart analyze
+
+# Run tests
+fvm dart test
+</code></pre>
+<h3 id="without-fvm">Without FVM</h3>
+<p>If you prefer not to use FVM, ensure you have Dart SDK <code>3.9.2</code> or later installed:</p>
+<pre class="language-bash"><code class="language-bash"># Check your Dart version
+dart --version
+
+# Run the application
+dart run bin/translations_code_gen.dart
+</code></pre>
+<h3 id="contributing">Contributing</h3>
+<ol>
+<li>Fork the repository</li>
+<li>Create your feature branch (<code>git checkout -b feature/amazing-feature</code>)</li>
+<li>Install dependencies with <code>fvm dart pub get</code> (or <code>dart pub get</code>)</li>
+<li>Make your changes</li>
+<li>Run tests and ensure code analysis passes</li>
+<li>Commit your changes (<code>git commit -m 'Add some amazing feature'</code>)</li>
+<li>Push to the branch (<code>git push origin feature/amazing-feature</code>)</li>
+<li>Open a Pull Request</li>
+</ol>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="constants">
+  <span class="name"><a href="constants_constants/">constants/constants</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="errors">
+  <span class="name"><a href="constants_errors/">constants/errors</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="help">
+  <span class="name"><a href="constants_help/">constants/help</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="generate_dart_keys">
+  <span class="name"><a href="generators_generate_dart_keys/">generators/generate_dart_keys</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="generate_dart_values">
+  <span class="name"><a href="generators_generate_dart_values/">generators/generate_dart_values</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="generate_json_values">
+  <span class="name"><a href="generators_generate_json_values/">generators/generate_json_values</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="generators">
+  <span class="name"><a href="generators_generators/">generators/generators</a></span> 
+
+</dt>
+<dd>
+</dd>
+
+          <dt id="translations_code_gen">
+  <span class="name"><a href="translations_code_gen/">translations_code_gen</a></span> 
+
+</dt>
+<dd>A comprehensive library for generating Dart code from translation files.
+</dd>
+
+        </dl>
+      </section>
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+    <li><a href="https://youhanasheriff.com">translations_code_gen package</a></li>
+</ol>
+
+    <h5 class="hidden-xs"><span class="package-name">translations_code_gen</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="constants_constants/">constants/constants</a></li>
+      <li><a href="constants_errors/">constants/errors</a></li>
+      <li><a href="constants_help/">constants/help</a></li>
+      <li><a href="generators_generate_dart_keys/">generators/generate_dart_keys</a></li>
+      <li><a href="generators_generate_dart_values/">generators/generate_dart_values</a></li>
+      <li><a href="generators_generate_json_values/">generators/generate_json_values</a></li>
+      <li><a href="generators_generators/">generators/generators</a></li>
+      <li><a href="translations_code_gen/">translations_code_gen</a></li>
+</ol>
+
+  </div>
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+</main>
+<footer>
+  <span class="no-break">
+    translations_code_gen
+      1.3.2
+  </span>
+  
+</footer>
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/docs.dart.js"></script>
+
+</body>
+</html>
+
