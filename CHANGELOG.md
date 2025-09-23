@@ -1,3 +1,10 @@
+## 1.3.2
+
+- **Version Update**: Updated package version from 1.2.2 to 1.3.2.
+- **Documentation**: Updated README.md with latest version reference.
+- **Error Messages**: Updated error messages to reflect current version.
+- **Maintenance**: General maintenance and version consistency improvements.
+
 ## 1.2.2
 
 - **Major Dependency Upgrades**: Updated all dependencies to their latest stable versions.

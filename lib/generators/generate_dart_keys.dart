@@ -95,8 +95,8 @@ String generateDartCodeKeys(Map<String, dynamic> data) {
         hasPlaceholders = positionalCount > 0 || namedParams.isNotEmpty;
       }
 
-      // Generate the constant - private if no placeholders, public if has placeholders
-      final constantName = hasPlaceholders ? field.key : '_${field.key}';
+      // Generate the constant - always private
+      final constantName = '_${field.key}';
       buffer.writeln(
         '  static const String $constantName = "${entry.key}.${field.key}";',
       );
@@ -122,7 +122,7 @@ String generateDartCodeKeys(Map<String, dynamic> data) {
         // Close named parameters block (ensure at least empty {})
         buffer.write('}');
 
-        buffer.write(') => ${field.key}.tr(');
+        buffer.write(') => $constantName.tr(');
 
         // Add args if positional
         if (positionalCount > 0) {
