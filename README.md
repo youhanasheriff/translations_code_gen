@@ -1,3 +1,5 @@
+
+
 # Translations code generator
 
 <p align="center">
@@ -30,7 +32,7 @@ dependencies:
   translations_code_gen: ^1.3.4
 ```
 
-### 2. Run this commend
+### 2. Run this command
 
 ```bash
 flutter pub get
